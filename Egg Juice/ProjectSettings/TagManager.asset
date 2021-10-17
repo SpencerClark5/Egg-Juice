@@ -3,10 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Tower
-  - Trap
-  - Enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -43,13 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 547914021
-    locked: 0
-  - name: Beings
-    uniqueID: 2942883267
-    locked: 0
-  - name: Towers
-    uniqueID: 2017347461
     locked: 0
