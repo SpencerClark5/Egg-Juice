@@ -32,20 +32,43 @@ public class EnemyScript : MonoBehaviour
 
     }
 
-    public void OnCollisionEnter2D(Collision2D col){
+    public void OnCollisionEnter2D(Collision2D col)
+    {
         //if enemy collides with tower
-        if (col.gameObject.name == "Tower")
+        if (col.gameObject.tag == "Tower")
         {
 
-           Debug.Log("ouch");
+            Debug.Log("ouch");
             //grabs the script on the tower
             Destroy(this.gameObject);
 
-             //TowerScript tower = col.gameObject.GetComponent<TowerScript>();
+            //TowerScript tower = col.gameObject.GetComponent<TowerScript>();
             // Debug.Log(tower.getDamage());
 
         }
     }
+
+    /*
+        public void OnTriggerEnter2D(Collider2D col)
+        {
+            Debug.Log("entered");
+
+        //what i came in contact with
+      TowerScript tower = col.gameObject.GetComponent<TowerScript>();
+
+        //telling the tower script to attack this game object
+        tower.TryAttack(this.gameObject);
+            /*
+            //if an enemy comes into the range
+            if (col.gameObject.tag == "Enemy")
+            {
+                GameObject target = col.gameObject;
+                Debug.Log("Grabbed");
+            }
+            
+        }
+            */
+    
     // Start is called before the first frame update
     private Rigidbody2D RB;
     void Start()
