@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
-    private class EnemyStats
+    public class EnemyStats
     {
         Vector3 speed;
         int EnemyHealth;
@@ -32,6 +32,8 @@ public class EnemyScript : MonoBehaviour
 
     }
 
+
+    //damage script
     public void OnCollisionEnter2D(Collision2D col)
     {
         //if enemy collides with tower
@@ -44,6 +46,15 @@ public class EnemyScript : MonoBehaviour
 
             //TowerScript tower = col.gameObject.GetComponent<TowerScript>();
             // Debug.Log(tower.getDamage());
+
+        }
+
+        //if a bullet collides with enemy
+        if (col.gameObject.tag == "Projectiles")
+        {
+            Debug.Log("hit with projectile");
+            TowerProjectile projectileScript = col.gameObject.GetComponent<TowerProjectile>();
+            Debug.Log(projectileScript.getDamage());
 
         }
     }
@@ -68,15 +79,16 @@ public class EnemyScript : MonoBehaviour
             
         }
             */
-    
+
     // Start is called before the first frame update
+    public EnemyStats Enemy;
     private Rigidbody2D RB;
     void Start()
     {
 
         RB = GetComponent<Rigidbody2D>();
         RB.velocity = new Vector2(1, 0);
-        EnemyStats Enemy = new EnemyStats(RB.velocity, 1, 1);
+        Enemy = new EnemyStats(RB.velocity, 3, 1);
         
        
         //get the object that this script is on and determine health from that

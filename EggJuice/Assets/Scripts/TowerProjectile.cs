@@ -4,19 +4,34 @@ using UnityEngine;
 
 public class TowerProjectile : MonoBehaviour
 {
+    public int ProjectileDamage = 0;
+    public void setDamage(int dmg)
+    {
+        ProjectileDamage = dmg;
+    }
+    public int getDamage()
+    {
+        return ProjectileDamage;
+    }
 
     public void OnCollisionEnter2D(Collision2D col)
     {
         //if enemy collides with tower
         if (col.gameObject.tag == "Enemy")
         {
-           //Debug.Log("hit!");
+         EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();
+            //how would i access a class object inside of a game object
+            enemy.Enemy.Damage(ProjectileDamage);
+
+           Debug.Log("hit!");
+           Debug.Log(ProjectileDamage);
             //grabs the script on the tower
-            Destroy(this.gameObject);
-            // Destroy(col.gameObject);
-            Debug.Log("HIT!");
-            //TowerScript tower = col.gameObject.GetComponent<TowerScript>();
+           // Destroy(this.gameObject);
             // Debug.Log(tower.getDamage());
+
+
+            // when the projectile spawns, give it damage equal to the tower damage
+
 
         }
     }
@@ -26,6 +41,7 @@ public class TowerProjectile : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+       // TowerScript tower = col.gameObject.GetComponent<TowerScript>();
     }
 
     // Update is called once per frame

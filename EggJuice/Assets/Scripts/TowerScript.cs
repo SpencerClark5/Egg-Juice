@@ -51,7 +51,7 @@ public class TowerScript : MonoBehaviour
         void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
-         MyTower =new TowerStats(1,1,1,.5,3);
+         MyTower =new TowerStats(1,1,10,.5,3);
      //   StartCoroutine(Wait());
         // TowerProjectile TP = Projectile.GetComponent<TowerProjectile>();
         //TowerStats Fence = new TowerStats(2, 100, 10);
@@ -72,8 +72,6 @@ public class TowerScript : MonoBehaviour
 
     public GameObject Projectile;
     public Transform Ranged_Tower;
-    //spawning a projectile (instantiate)
-    //adding force to the projectile towards the target
 
     public GameObject GetTarget(GameObject GO)
     {
@@ -84,23 +82,29 @@ public class TowerScript : MonoBehaviour
     Vector3 TargetMoveDirection;
     public void TryAttack(GameObject GO)
     {
+
+
             //spawns a projectile at the center of the tower
             GameObject proj = Instantiate(Projectile, Ranged_Tower.position, Ranged_Tower.rotation);
             //grabs the RB from it
             ProjectileRB = proj.GetComponent<Rigidbody2D>();
+            //grabs the script from the projectile
+            TowerProjectile projectileScript = proj.GetComponent<TowerProjectile>();
+            //sets the damage of the projectile equal to the tower damage
+            projectileScript.setDamage(MyTower.getDamage());
             //finds the direction of which the target is moving
             TargetMoveDirection = (GetTarget(GO).transform.position - transform.position).normalized * MyTower.GetPS();
             //gives the target a new velocity in that direction
             ProjectileRB.velocity = new Vector3(TargetMoveDirection.x, TargetMoveDirection.y);
-           
-        
+
+       
 
     }
     // Update is called once per frame
     void Update()
     {
 
-       //check the collider on the tower for an enemy to come in contact
+      
 
        
     }
