@@ -19,6 +19,14 @@ public class PathFinding
         grid = new GridBoy<PathNode>(width, height, 0.5f,
            new Vector3(-5, -5, 0), (GridBoy<PathNode> g, int x, int y)
             => new PathNode(g, x, y));
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j));
+            }
+        }
         //Debug.Log("gridValue: " + grid.GetValue(5, 5));
     }
 

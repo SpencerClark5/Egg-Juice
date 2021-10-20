@@ -7,7 +7,10 @@ public class PathNode
     private GridBoy<PathNode> grid;
     public int x;
     public int y;
-
+    // square
+    [SerializeField] private GameObject square;
+    // occupied
+    private bool occupied = false;
     public int gCost;
     public int hCost;
     public int fCost;
@@ -24,6 +27,12 @@ public class PathNode
     public void CalculateFCost()
     {
         fCost = gCost + hCost;
+    }
+
+    public void createSquare(Vector3 position)
+    {
+        // instantiate square to position
+        GameObject.Instantiate(square);
     }
 
     public override string ToString()

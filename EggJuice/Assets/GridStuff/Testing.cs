@@ -36,10 +36,24 @@ using UnityEngine;
 public class Testing : MonoBehaviour
 {
     public PathFinding pathfinding;
-
+    [SerializeField] private GameObject square;
+    private GridBoy<PathNode> grid;
+    private const int WIDTH = 20;
+    private const int HEIGHT = 20;
     private void Start()
     {
-        pathfinding = new PathFinding(20, 20);
+        //pathfinding = new PathFinding(20, 20);
+        grid = new GridBoy<PathNode>(WIDTH, HEIGHT, 0.5f,
+           new Vector3(-5, -5, 0), (GridBoy<PathNode> g, int x, int y)
+            => new PathNode(g, x, y));
+
+        for (int i = 0; i < WIDTH; i++)
+        {
+            for (int j = 0; j < HEIGHT; j++)
+            {
+                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j));
+            }
+        }
     }
 
     private void Update()
@@ -48,10 +62,10 @@ public class Testing : MonoBehaviour
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = 0f;
-
-            Vector2Int v = pathfinding.GetGrid().GetXY(mouseWorldPosition);
+            
+            Vector2Int v = grid.GetXY(mouseWorldPosition);
             Debug.Log("path x value: " + v.y);
-            List<PathNode> path = pathfinding.FindPath(0, 0, v.x, v.y);
+            /*List<PathNode> path = pathfinding.FindPath(0, 0, v.x, v.y);
             if (path != null)
             {
                 for (int i = 0; i < path.Count - 1; i++)
@@ -59,7 +73,7 @@ public class Testing : MonoBehaviour
                     Debug.DrawLine(new Vector3(path[i].x, path[i].y) * 10f + Vector3.one * 5f,
                         new Vector3(path[i + 1].x, path[i + 1].y));
                 }
-            }
+            }*/
         }
     }
 }
