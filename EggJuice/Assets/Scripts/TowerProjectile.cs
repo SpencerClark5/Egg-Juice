@@ -23,10 +23,9 @@ public class TowerProjectile : MonoBehaviour
             //how would i access a class object inside of a game object
             enemy.Enemy.Damage(ProjectileDamage);
 
-           Debug.Log("hit!");
-           Debug.Log(ProjectileDamage);
+          // Debug.Log("hit!");
             //grabs the script on the tower
-           // Destroy(this.gameObject);
+            Destroy(this.gameObject);
             // Debug.Log(tower.getDamage());
 
 
@@ -37,10 +36,13 @@ public class TowerProjectile : MonoBehaviour
     }
 
     private Rigidbody2D RB;
+  //  private Collider COL;
     // Start is called before the first frame update
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+       // COL = GetComponent<Collider>();
+        //Physics.IgnoreCollision(COL,COL);
        // TowerScript tower = col.gameObject.GetComponent<TowerScript>();
     }
 

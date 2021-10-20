@@ -59,6 +59,8 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+  
+
     /*
         public void OnTriggerEnter2D(Collider2D col)
         {
