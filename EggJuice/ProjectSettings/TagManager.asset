@@ -53,3 +53,6 @@ TagManager:
   - name: Towers
     uniqueID: 2017347461
     locked: 0
+  - name: Projectiles
+    uniqueID: 876215917
+    locked: 0
