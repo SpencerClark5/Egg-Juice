@@ -51,7 +51,7 @@ public class TowerScript : MonoBehaviour
     void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
-        MyTower = new TowerStats(1, 100, 10, .5, 3);
+        MyTower = new TowerStats(1, 100, 10, .1, 3);
         //   StartCoroutine(Wait());
         // TowerProjectile TP = Projectile.GetComponent<TowerProjectile>();
         //TowerStats Fence = new TowerStats(2, 100, 10);
@@ -94,7 +94,8 @@ public class TowerScript : MonoBehaviour
 
     public void TryAttack(GameObject GO)
     {
-        StartCoroutine(WaitForAttack(.1f));
+        StartCoroutine(WaitForAttack((float)MyTower.GetFR()));
+        
 
         Rigidbody2D ProjectileRB;
         Vector3 TargetMoveDirection;
