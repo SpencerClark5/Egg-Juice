@@ -26,7 +26,9 @@ public class EnemyScript : MonoBehaviour
         public void Damage(int damageAmount)
         {
             EnemyHealth -= damageAmount;
-            if (EnemyHealth < 0) EnemyHealth = 0;
+            if (EnemyHealth <= 0) {
+                EnemyHealth=0;
+            }
         }
 
 
@@ -49,14 +51,15 @@ public class EnemyScript : MonoBehaviour
 
         }
 
+        /*
         //if a bullet collides with enemy
         if (col.gameObject.tag == "Projectiles")
         {
             Debug.Log("hit with projectile");
             TowerProjectile projectileScript = col.gameObject.GetComponent<TowerProjectile>();
             Debug.Log(projectileScript.getDamage());
-
-        }
+        
+        }*/
     }
 
   
@@ -85,12 +88,13 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     public EnemyStats Enemy;
     private Rigidbody2D RB;
+ //   private GameObject GO;
     void Start()
     {
-
+  //    GO = GetComponent<GameObject>();
         RB = GetComponent<Rigidbody2D>();
         RB.velocity = new Vector2(1, 0);
-        Enemy = new EnemyStats(RB.velocity, 3, 1);
+        Enemy = new EnemyStats(RB.velocity, 300, 1);
         
        
         //get the object that this script is on and determine health from that
@@ -101,19 +105,6 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
 
-        //RB.velocity = new Vector2(1, 0);
-
-
-
-
-        // Vector3 movement = new Vector3(1, 0,0);
-        // transform.position = transform.position + movement * Time.deltaTime;
-
-
-        //if an enemy comes in contact with something that does damage
-
-        //if a projectile comes in contact with the enemy
-
-        //if hitscan damages the enemy
+       
     }
 }

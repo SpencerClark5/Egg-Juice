@@ -14,24 +14,27 @@ public class TowerProjectile : MonoBehaviour
         return ProjectileDamage;
     }
 
+
     public void OnCollisionEnter2D(Collision2D col)
     {
         //if enemy collides with tower
         if (col.gameObject.tag == "Enemy")
         {
          EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();
-            //how would i access a class object inside of a game object
+            //grabs the enemy object inside of the enemyScript
             enemy.Enemy.Damage(ProjectileDamage);
 
-          // Debug.Log("hit!");
-            //grabs the script on the tower
+            //destroys the projectile
             Destroy(this.gameObject);
-            // Debug.Log(tower.getDamage());
 
+            //if the enemy dies
+            if (enemy.Enemy.getHealth() == 0)
+            {
+                //can call a death animation per enemy
+                Destroy(col.gameObject);
+            }
 
-            // when the projectile spawns, give it damage equal to the tower damage
-
-
+          
         }
     }
 
@@ -40,10 +43,13 @@ public class TowerProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         RB = GetComponent<Rigidbody2D>();
-       // COL = GetComponent<Collider>();
+        //ignores the collision on the projectile layers (6)
+        Physics2D.IgnoreLayerCollision(6, 6);
+        // COL = GetComponent<Collider>();
         //Physics.IgnoreCollision(COL,COL);
-       // TowerScript tower = col.gameObject.GetComponent<TowerScript>();
+        // TowerScript tower = col.gameObject.GetComponent<TowerScript>();
     }
 
     // Update is called once per frame

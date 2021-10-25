@@ -28,6 +28,14 @@ public class Chicken : MonoBehaviour
 
     }
 
+    public void SpawnEgg()
+    {
+
+
+
+    }
+
+
     IEnumerator walkTimer()
     {
         velX = Random.Range(VEL_MIN, VEL_MAX);

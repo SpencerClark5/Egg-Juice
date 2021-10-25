@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3208858133673615476}
   - component: {fileID: 417262716878469303}
   - component: {fileID: 133435537904612329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3235716494604694078}
   - component: {fileID: 2024193543517706071}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RubberBandFlying_03_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
