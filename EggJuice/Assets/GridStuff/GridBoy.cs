@@ -69,7 +69,7 @@ public class GridBoy<T>
     {
         int x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         int y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
-        Debug.Log("xxxxxxxxxxx: " + x);
+    //    Debug.Log("xxxxxxxxxxx: " + x);
         return new Vector2Int(x, y);
     }
 

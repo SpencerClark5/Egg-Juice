@@ -18,7 +18,7 @@ public class clickyegg : MonoBehaviour
     public void SpawnEgg()
     {
         //wait for the condidition for the egg to spawn (probably round based)
-     //GameObject EggObject = Instantiate(EGG, Chicken.position, Chicken.rotation);
+        //GameObject EggObject = Instantiate(EGG, Chicken.position, Chicken.rotation);
 
 
 
@@ -26,8 +26,10 @@ public class clickyegg : MonoBehaviour
     }
 
 
-public void pickUpEgg()
+    public void pickUpEgg()
     {
+
+
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //when an egg is clicked
@@ -47,9 +49,19 @@ public void pickUpEgg()
 
     }
 
+
+    public void OnMouseDown()
+    {
+        Destroy(this.gameObject);
+        currency++;
+        Debug.Log(currency);
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
+ 
 }

@@ -78,7 +78,7 @@ public class TowerScript : MonoBehaviour
         if (col.gameObject.tag == "Enemy")
         {
             Target = null;
-            Debug.Log("Target is now null");
+            //Debug.Log("Target is now null");
             //otherwise target nothing
         }
     }
