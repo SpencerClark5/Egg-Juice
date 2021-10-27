@@ -92,6 +92,10 @@ MonoBehaviour:
   width: 0
   height: 0
   tower: {fileID: 0}
+  visual: {fileID: 0}
+  canvas: {fileID: 0}
+  testing: {fileID: 0}
+  dragObject: {fileID: 6842837420336203666}
 --- !u!114 &887200327062279799
 MonoBehaviour:
   m_ObjectHideFlags: 0

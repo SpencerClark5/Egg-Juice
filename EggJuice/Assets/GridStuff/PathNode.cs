@@ -38,7 +38,7 @@ public class PathNode
         GameObject obj = GameObject.Instantiate(nSquare, position, Quaternion.identity);
         square = obj;
         swapColor();
-        square.SetActive(false);
+        square.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public GameObject getSquare()
@@ -62,7 +62,7 @@ public class PathNode
     {
         if (!visible)
         {
-            square.SetActive(true);
+            square.GetComponent<SpriteRenderer>().enabled = true;
             visible = true;
         }
     }
@@ -71,7 +71,7 @@ public class PathNode
     {
         if (visible)
         {
-            square.SetActive(false);
+            square.GetComponent<SpriteRenderer>().enabled = false;
             visible = false;
         }
     }

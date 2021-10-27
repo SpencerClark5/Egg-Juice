@@ -56,3 +56,6 @@ TagManager:
   - name: Projectiles
     uniqueID: 876215917
     locked: 0
+  - name: Squares
+    uniqueID: 3162256817
+    locked: 0

@@ -12,6 +12,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     [SerializeField] private Image visual;
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject testing;
+    [SerializeField] private GameObject dragObject;
     // holds the world position of the top left tile
     private Vector3 topLeftCenter;
 
@@ -37,7 +38,6 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
         
         if (clickStarted)
         {
-            Debug.Log("clickstarted");
             if (mouseExited)
             {
                 mouseExited = false;
@@ -46,6 +46,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                 dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y),
                     Quaternion.identity);
+
                 dragVisual.transform.SetParent(canvas.transform);
             }
             if (Input.GetMouseButtonUp(0))
