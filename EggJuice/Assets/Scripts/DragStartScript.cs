@@ -11,16 +11,25 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     [SerializeField] private GameObject tower;
     [SerializeField] private Image visual;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject testing;
+    // holds the world position of the top left tile
+    private Vector3 topLeftCenter;
+
     private Vector3 startPos;
     private Vector3 exitPos;
     private bool clickStarted = false;
     private bool mouseExited = false;
     private bool dragging = false;
     private Image dragVisual;
+    private Vector3 topLeftLocal;
+    private Vector3 topRightLocal;
+    private Vector3 bottomLeftLocal;
+    private Vector3 bottomRightLocal;
+    private float cellSize;
     // Start is called before the first frame update
     void Start()
     {
-        
+        cellSize = testing.GetComponent<Testing>().getGrid().GetCellSize();
     }
     // Update is called once per frame
     void Update()
@@ -38,7 +47,6 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                     Input.mousePosition.y),
                     Quaternion.identity);
                 dragVisual.transform.SetParent(canvas.transform);
-
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -53,11 +61,28 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                 dragVisual.transform.SetPositionAndRotation(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y), Quaternion.identity);
                 // calculate squares it is over to make red and green squares show for is placeable or not
+                //calculateCorners();
+                //testing.GetComponent<Testing>().setSquares(topLeftLocal, topRightLocal, bottomLeftLocal, bottomRightLocal);
             }
         }
     }
     
+    private void calculateCorners()
+    {
+        topLeftLocal = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        //new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition)/* - (testing.getGrid().GetCellSize() / 2f) * width*/, 
+        //Input.mousePosition.y/* + (100f / 2f) * height*/);
+        topRightLocal = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + cellSize,
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y + cellSize);
+        bottomLeftLocal = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - cellSize,
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y - cellSize);
+        bottomRightLocal = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + cellSize,
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y - cellSize);
+    }
+
     
+
     public void OnMouseDrag()
     {
         Debug.Log("DragDetected");

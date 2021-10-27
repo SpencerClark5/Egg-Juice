@@ -24,7 +24,7 @@ public class PathFinding
         {
             for (int j = 0; j < height; j++)
             {
-                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j));
+               // grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j));
             }
         }
         //Debug.Log("gridValue: " + grid.GetValue(5, 5));

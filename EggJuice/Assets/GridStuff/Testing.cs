@@ -40,6 +40,7 @@ public class Testing : MonoBehaviour
     private GridBoy<PathNode> grid;
     private const int WIDTH = 20;
     private const int HEIGHT = 20;
+    private PathNode[] showingNodes;
     private void Start()
     {
         //pathfinding = new PathFinding(20, 20);
@@ -51,7 +52,7 @@ public class Testing : MonoBehaviour
         {
             for (int j = 0; j < HEIGHT; j++)
             {
-                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j));
+                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j), square);
             }
         }
     }
@@ -64,7 +65,7 @@ public class Testing : MonoBehaviour
             mouseWorldPosition.z = 0f;
             
             Vector2Int v = grid.GetXY(mouseWorldPosition);
-            Debug.Log("path x value: " + v.y);
+            //Debug.Log("path x value: " + v.y);
             /*List<PathNode> path = pathfinding.FindPath(0, 0, v.x, v.y);
             if (path != null)
             {
@@ -75,6 +76,20 @@ public class Testing : MonoBehaviour
                 }
             }*/
         }
+    }
+
+    public GridBoy<PathNode> getGrid()
+    {
+        return grid;
+    }
+
+    public void setSquares(Vector3 topLeft, Vector3 topRight, Vector3 bottomLeft, Vector3 bottomRight)
+    {
+        Debug.Log("topLeft: " + topLeft);
+        grid.GetValue(topLeft).showSquare();
+        grid.GetValue(topRight).showSquare();
+        grid.GetValue(bottomLeft).showSquare();
+        grid.GetValue(bottomRight).showSquare();
     }
 }
 
