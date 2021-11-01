@@ -7,6 +7,8 @@ TagManager:
   - Tower
   - Trap
   - Enemy
+  - collisionDetecter
+  - topLeftCollisionDetecter
   layers:
   - Default
   - TransparentFX

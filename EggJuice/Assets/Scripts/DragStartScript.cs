@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitHandler, IPointerUpHandler
+public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitHandler
 {
     [SerializeField] private int width;
     [SerializeField] private int height;
     [SerializeField] private GameObject tower;
     [SerializeField] private Image visual;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private GameObject testing;
+    [SerializeField] private Testing testing;
     [SerializeField] private GameObject dragObject;
     // holds the world position of the top left tile
     private Vector3 topLeftCenter;
-
+    private GameObject draggingDragObject;
     private Vector3 startPos;
     private Vector3 exitPos;
     private bool clickStarted = false;
@@ -27,6 +27,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     private Vector3 bottomLeftLocal;
     private Vector3 bottomRightLocal;
     private float cellSize;
+    private Vector3 center;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     // Update is called once per frame
     void Update()
     {
-        
+
         if (clickStarted)
         {
             if (mouseExited)
@@ -43,34 +44,61 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                 mouseExited = false;
                 dragging = true;
                 Debug.Log("exited");
-                dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
-                    Input.mousePosition.y),
-                    Quaternion.identity);
+                //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
+                //  Input.mousePosition.y),
+                //Quaternion.identity);
 
-                dragVisual.transform.SetParent(canvas.transform);
+                //testing.remakeListArray(width, height);
+
+                //dragVisual.transform.SetParent(canvas.transform);
+
+                draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
+                
+                //draggingDragObject.transform.SetParent(canvas.transform);
+                draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
+                Debug.Log(draggingDragObject.transform.position);
+                testing.setThings(width * height, this);
             }
             if (Input.GetMouseButtonUp(0))
             {
                 clickStarted = false;
                 mouseExited = false;
                 dragging = false;
-                Destroy(dragVisual.gameObject);
+                // check if any tiles in tile array are occupied
+                if (testing.checkForOccupied())
+                {
+                    // occupied
+                    // if they are don't instatiate the tower and just set it up to be dragged again
+                    Destroy(draggingDragObject);
+                }
+                else
+                {
+                    // not occupied
+                    testing.setTilesToOccupied();
+                    Instantiate(tower, center, Quaternion.identity);
+                    Destroy(draggingDragObject);
+                }
+                
+                //Destroy(dragVisual.gameObject);
                 // make rad and greed squares no longer visible and spawn tower
             }
             if (dragging)
             {
-                dragVisual.transform.SetPositionAndRotation(new Vector3(Input.mousePosition.x,
-                    Input.mousePosition.y), Quaternion.identity);
+                //dragVisual.transform.SetPositionAndRotation(new Vector3(Input.mousePosition.x,
+                //  Input.mousePosition.y), Quaternion.identity);
+                draggingDragObject.transform.SetPositionAndRotation(new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
                 // calculate squares it is over to make red and green squares show for is placeable or not
                 //calculateCorners();
                 //testing.GetComponent<Testing>().setSquares(topLeftLocal, topRightLocal, bottomLeftLocal, bottomRightLocal);
             }
         }
     }
-    
+
     private void calculateCorners()
     {
-        topLeftLocal = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 
+        topLeftLocal = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
             Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         //new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition)/* - (testing.getGrid().GetCellSize() / 2f) * width*/, 
         //Input.mousePosition.y/* + (100f / 2f) * height*/);
@@ -82,7 +110,26 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
             Camera.main.ScreenToWorldPoint(Input.mousePosition).y - cellSize);
     }
 
-    
+    public void recalculate(Vector3 center)
+    {
+        if (width % 2 == 0)//even
+        {
+            Debug.Log(cellSize);
+            this.center.x = center.x + (width / 2) * cellSize - (1 / 2) * cellSize;
+        }
+        else//odd
+        {
+            this.center.x = center.x + (width / 2) * cellSize;
+        }
+        if (height % 2 == 0)//even
+        {
+            this.center.y = center.y - (height / 2) * cellSize + (1 / 2) * cellSize;
+        }
+        else//odd
+        {
+            this.center.y = center.y - (height / 2) * cellSize;
+        }
+    }
 
     public void OnMouseDrag()
     {
@@ -100,18 +147,21 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
         clickStarted = true;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    /*public void OnPointerUp(PointerEventData eventData)
     {
         throw new System.NotImplementedException();
-    }
+    }*/
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("OnPointerExit called");
         if (clickStarted)
         {
-            exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseExited = true;
+            if (!dragging)
+            {
+                exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseExited = true;
+            }
         }
     }
 }

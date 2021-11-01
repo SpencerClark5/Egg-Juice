@@ -38,23 +38,28 @@ public class Testing : MonoBehaviour
     public PathFinding pathfinding;
     [SerializeField] private GameObject square;
     private GridBoy<PathNode> grid;
-    private const int WIDTH = 20;
+    private const int WIDTH = 50;
     private const int HEIGHT = 20;
     private PathNode[] showingNodes;
+    private ArrayList tiles;
+    private int numTiles = 0;
+    private int size = 0;
+    private DragStartScript dragScript;
     private void Start()
     {
         //pathfinding = new PathFinding(20, 20);
         grid = new GridBoy<PathNode>(WIDTH, HEIGHT, 0.5f,
-           new Vector3(-5, -5, 0), (GridBoy<PathNode> g, int x, int y)
+           new Vector3(-12, -5, 0), (GridBoy<PathNode> g, int x, int y)
             => new PathNode(g, x, y));
 
         for (int i = 0; i < WIDTH; i++)
         {
             for (int j = 0; j < HEIGHT; j++)
             {
-                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j), square);
+                grid.GetValue(i, j).createSquare(grid.GetWorldPosition(i, j), square).setTesting(this);
             }
         }
+        tiles = new ArrayList();
     }
 
     private void Update()
@@ -63,7 +68,7 @@ public class Testing : MonoBehaviour
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = 0f;
-            
+
             Vector2Int v = grid.GetXY(mouseWorldPosition);
             //Debug.Log("path x value: " + v.y);
             /*List<PathNode> path = pathfinding.FindPath(0, 0, v.x, v.y);
@@ -83,6 +88,31 @@ public class Testing : MonoBehaviour
         return grid;
     }
 
+    public void setThings(int size, DragStartScript dragScript)
+    {
+        this.size = size;
+        this.dragScript = dragScript;
+    }
+
+    public int addTileToArray(PathNode p)
+    {
+        //showingNodes[numTiles] = p;
+        tiles.Add(p);
+        numTiles++;
+        return numTiles - 1;
+    }
+
+    public void removeTileFromArray(PathNode p)
+    {
+        tiles.Remove(p);
+        numTiles--;
+    }
+
+    public void recalculate(Vector3 center)
+    {
+        dragScript.recalculate(center);
+    }
+
     public void setSquares(Vector3 topLeft, Vector3 topRight, Vector3 bottomLeft, Vector3 bottomRight)
     {
         Debug.Log("topLeft: " + topLeft);
@@ -90,6 +120,34 @@ public class Testing : MonoBehaviour
         grid.GetValue(topRight).showSquare();
         grid.GetValue(bottomLeft).showSquare();
         grid.GetValue(bottomRight).showSquare();
+    }
+
+    public void remakeListArray(int width, int height)
+    {
+        showingNodes = new PathNode[width * height];
+    }
+
+    public void setTilesToOccupied()
+    {
+        foreach (PathNode p in tiles)
+        {
+            p.setOccupied();
+            p.hideSquare();
+        }
+        //showingNodes[i].setOccupied();
+        //showingNodes[i].hideSquare();
+    }
+    // returns true if occupied, false otherwise
+    public bool checkForOccupied()
+    {
+        foreach(PathNode p in tiles)
+        {
+            if (p.getOccupied())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

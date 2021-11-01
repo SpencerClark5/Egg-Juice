@@ -32,13 +32,16 @@ public class PathNode
         fCost = gCost + hCost;
     }
 
-    public void createSquare(Vector3 position, GameObject nSquare)
+    public CollisionChecker createSquare(Vector3 position, GameObject nSquare)
     {
         // instantiate square to position
-        GameObject obj = GameObject.Instantiate(nSquare, position, Quaternion.identity);
+        GameObject obj = GameObject.Instantiate(nSquare, new Vector3(position.x + grid.GetCellSize() / 2, 
+            position.y + grid.GetCellSize() / 2), Quaternion.identity);
         square = obj;
         swapColor();
         square.GetComponent<SpriteRenderer>().enabled = false;
+        square.GetComponent<CollisionChecker>().setPathNode(this);
+        return square.GetComponent<CollisionChecker>();
     }
 
     public GameObject getSquare()
@@ -79,5 +82,21 @@ public class PathNode
     public override string ToString()
     {
         return x + ", " + y;
+    }
+
+    public Vector3 getCenterWorldPostition()
+    {
+        return grid.GetWorldPosition(x, y);
+    }
+
+    public void setOccupied()
+    {
+        occupied = true;
+        swapColor();
+    }
+
+    public bool getOccupied()
+    {
+        return occupied;
     }
 }
