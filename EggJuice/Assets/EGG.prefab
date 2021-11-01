@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currency: 0
   Chicken: {fileID: 0}
-  EGG: {fileID: 0}
+  EGG: {fileID: 7955757708087373628}
 --- !u!58 &812241045774808194
 CircleCollider2D:
   m_ObjectHideFlags: 0

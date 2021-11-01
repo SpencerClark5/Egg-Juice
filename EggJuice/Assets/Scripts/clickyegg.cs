@@ -28,34 +28,16 @@ public class clickyegg : MonoBehaviour
 
     public void pickUpEgg()
     {
-
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        //when an egg is clicked
-        if (Input.GetMouseButtonUp(0))
-        {
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            Debug.Log("Click!");
-            //play animation
-            //+1 currency
-            currency += 1;
-            //destroy egg
-
-        }
-
-
-
-
-    }
-
-
-    public void OnMouseDown()
-    {
         Destroy(this.gameObject);
         currency++;
         Debug.Log(currency);
+    }
 
+
+    //when the egg is clicked
+    public void OnMouseDown()
+    {
+        pickUpEgg();
     }
 
     // Update is called once per frame
