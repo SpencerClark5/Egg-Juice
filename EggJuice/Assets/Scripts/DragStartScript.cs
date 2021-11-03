@@ -114,7 +114,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     {
         if (width % 2 == 0)//even
         {
-            Debug.Log(cellSize);
+            //Debug.Log(cellSize);
             this.center.x = center.x + (width / 2) * cellSize - (1 / 2) * cellSize;
         }
         else//odd

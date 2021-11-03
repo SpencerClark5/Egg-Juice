@@ -17,6 +17,7 @@ public class PathNode
     private Color color1 = new Color(0F, 1F, 0F, 1F);
     private Color color2 = new Color(1F, 0F, 0F, 1F);
     private bool visible = false;
+    private GameObject squareParent;
 
     public PathNode cameFromNode;
 
@@ -25,6 +26,7 @@ public class PathNode
         this.grid = grid;
         this.x = x;
         this.y = y;
+        squareParent = GameObject.FindGameObjectWithTag("SquareParent");
     }
 
     public void CalculateFCost()
@@ -41,6 +43,7 @@ public class PathNode
         swapColor();
         square.GetComponent<SpriteRenderer>().enabled = false;
         square.GetComponent<CollisionChecker>().setPathNode(this);
+        square.transform.SetParent(squareParent.transform);
         return square.GetComponent<CollisionChecker>();
     }
 

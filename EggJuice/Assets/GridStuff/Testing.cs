@@ -38,13 +38,14 @@ public class Testing : MonoBehaviour
     public PathFinding pathfinding;
     [SerializeField] private GameObject square;
     private GridBoy<PathNode> grid;
-    private const int WIDTH = 50;
+    private const int WIDTH = 48;
     private const int HEIGHT = 20;
     private PathNode[] showingNodes;
     private ArrayList tiles;
     private int numTiles = 0;
     private int size = 0;
     private DragStartScript dragScript;
+
     private void Start()
     {
         //pathfinding = new PathFinding(20, 20);

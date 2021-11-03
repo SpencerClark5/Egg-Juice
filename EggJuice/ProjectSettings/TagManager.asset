@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - collisionDetecter
   - topLeftCollisionDetecter
+  - SquareParent
   layers:
   - Default
   - TransparentFX

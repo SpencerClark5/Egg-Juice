@@ -93,8 +93,8 @@ public class EnemyScript : MonoBehaviour
     {
   //    GO = GetComponent<GameObject>();
         RB = GetComponent<Rigidbody2D>();
-        RB.velocity = new Vector2(1, 0);
-        Enemy = new EnemyStats(RB.velocity, 300, 1);
+        //RB.velocity = new Vector2(1, 0);
+        //Enemy = new EnemyStats(RB.velocity, 300, 1);
         
        
         //get the object that this script is on and determine health from that
