@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4813753678331341676}
   - component: {fileID: 4813753678331341672}
   - component: {fileID: 4813753678331341673}
-  - component: {fileID: 4813753678331341678}
+  - component: {fileID: 5447142172022135702}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Chicken
@@ -292,7 +292,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &4813753678331341678
+--- !u!114 &5447142172022135702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4813753678331341664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 570f6a8f7d314d94eae47ace8653d78e, type: 3}
+  m_Script: {fileID: 11500000, guid: 84af3f35aa66d0c41a8914920bd9df9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   seeker: {fileID: 4813753678331341673}

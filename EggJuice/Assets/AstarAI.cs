@@ -23,7 +23,7 @@ public class AstarAI : MonoBehaviour
     private bool reachedEndOfPath;
 
     [SerializeField] private bool EnemyOrChicken;
-    [SerializeField] private Testing testing;
+    private Testing testing;
 
     private Vector3 cPos;
     private Vector3 ePos;
@@ -33,6 +33,7 @@ public class AstarAI : MonoBehaviour
 
     public void Start()
     {
+        testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
         //seeker = GetComponent<Seeker>();
         // If you are writing a 2D game you should remove this line
         // and use the alternative way to move sugggested further below.
