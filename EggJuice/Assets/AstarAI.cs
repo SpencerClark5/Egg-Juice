@@ -7,26 +7,33 @@ using System.Collections;
 [HelpURL("http://arongranberg.com/astar/docs/class_partial1_1_1_astar_a_i.php")]
 public class AstarAI : MonoBehaviour
 {
-    public Transform targetPosition;
+    private Transform targetPosition;
 
-    private Seeker seeker;
+    [SerializeField] private Seeker seeker;
     private CharacterController controller;
-
-    public Path path;
-
-    public float speed = 2;
-
-    public float nextWaypointDistance = 3;
+    // was public
+    private Path path;
+    // was public
+    [SerializeField] private float speed = 2;
+    // was public
+    private float nextWaypointDistance = 3;
 
     private int currentWaypoint = 0;
+    //was public
+    private bool reachedEndOfPath;
 
-    public bool reachedEndOfPath;
+    [SerializeField] private bool EnemyOrChicken;
+    [SerializeField] private Testing testing;
 
-    [SerializeField] private GameObject chicken;
+    private Vector3 cPos;
+    private Vector3 ePos;
+    private float distance;
+    private float shortestDistance;
+    private GameObject closestChicken;
 
     public void Start()
     {
-        seeker = GetComponent<Seeker>();
+        //seeker = GetComponent<Seeker>();
         // If you are writing a 2D game you should remove this line
         // and use the alternative way to move sugggested further below.
         //controller = GetComponent<CharacterController>();
@@ -42,21 +49,80 @@ public class AstarAI : MonoBehaviour
         // set new destination
         while (true)
         {
-            Debug.Log("choosing new destination!");
-            targetPosition = chicken.transform;
+            if (EnemyOrChicken)
+            {
+                //Debug.Log("choosing new destination!");
+                /*if (chicken)
+                {
+                    targetPosition = chicken.transform;
+                }
+                else
+                {*/
+                // find new chicken
+                if (testing.getNumChickens() > 0 && testing.chickens[0].transform != null)
+                {
+                    shortestDistance = calculateDistance(testing.chickens[0].transform, transform);
+                    closestChicken = testing.chickens[0];
+
+                    for (int i = 0; i < testing.getNumChickens(); i++)
+                    {
+                        if (testing.chickens[i].transform != null)
+                        {
+                            cPos = testing.chickens[i].transform.position;
+                            ePos = transform.position;
+                            distance = calculateDistance(testing.chickens[i].transform, transform);
+                            //Debug.Log(distance);
+
+                            if (Mathf.Abs(distance) < Mathf.Abs(shortestDistance))
+                            {
+                                //Debug.Log("shortestDistance: " + shortestDistance);
+                                shortestDistance = distance;
+                                closestChicken = testing.chickens[i];
+                            }
+                        }
+                    }
+                    if (closestChicken.transform != null)
+                    {
+                        //targetPosition.position = closestChicken.transform.position;
+                        //}
+                        //Debug.Log("targetEnemyPosition: " + targetPosition);
+                        seeker.StartPath(transform.position, closestChicken.transform.position, OnPathComplete);
+                    }
+                }
+                //path.BlockUntilCalculated();
+                yield return new WaitForSeconds(0.3f);
+            }
+            else
+            {
+                // pick random location
+                /*int x = Random.Range(0, 48);
+                int y = Random.Range(0, 20);
+                Debug.Log("Range: " + x);
+                Debug.Log("Ranch: " + y);*/
+                //targetPosition.position = ; 
+                //Debug.Log("targetPositionFor_Chicken: " + targetPosition.position);
+
+                // Debug.Log("targetChickenPosition: " + targetPosition);
+                //Debug.Log("Seekder: " + testing.getWorldPositionFromGrid(Random.Range(0, 48), Random.Range(0, 20)));
+                this.seeker.StartPath(transform.position, new Vector3(Random.Range(-12, 10), Random.Range(-5, 5)), OnPathComplete);
+
+                yield return new WaitForSeconds(5f);
+            }
             //seeker.CancelCurrentPathRequest();
             //reachedEndOfPath = true;
             //path.Release(path, false);
-            Debug.Log("targetPosition: " + targetPosition);
-            seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
-            //path.BlockUntilCalculated();
-            yield return new WaitForSeconds(0.3f);
         }
+    }
+
+    // calculates distance between two transforms. t1 chicken and t2 is enemy.
+    private float calculateDistance(Transform t1, Transform t2)
+    {
+        return Mathf.Sqrt(Mathf.Pow((t1.position.x - t2.position.x), 2) + Mathf.Pow((t1.position.y - t2.position.y), 2));
     }
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
+        //Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
 
         if (!p.error)
         {
@@ -68,6 +134,7 @@ public class AstarAI : MonoBehaviour
 
     public void Update()
     {
+
         if (path == null)
         {
             // We have no path to follow yet, so don't do anything
@@ -121,6 +188,7 @@ public class AstarAI : MonoBehaviour
         //controller.SimpleMove(velocity);
 
         // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
-         transform.position += velocity * Time.deltaTime;
+        transform.position += velocity * Time.deltaTime;
+
     }
 }

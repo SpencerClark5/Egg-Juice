@@ -11,7 +11,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     [SerializeField] private GameObject tower;
     [SerializeField] private Image visual;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private Testing testing;
+    private Testing testing;
     [SerializeField] private GameObject dragObject;
     // holds the world position of the top left tile
     private Vector3 topLeftCenter;
@@ -26,17 +26,20 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     private Vector3 topRightLocal;
     private Vector3 bottomLeftLocal;
     private Vector3 bottomRightLocal;
-    private float cellSize;
+    private float cellSize = -5;
     private Vector3 center;
     // Start is called before the first frame update
     void Start()
     {
-        cellSize = testing.GetComponent<Testing>().getGrid().GetCellSize();
+        testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
     }
     // Update is called once per frame
     void Update()
     {
-
+        if (cellSize <= 0)
+        {
+            cellSize = testing.GetComponent<Testing>().getGrid().GetCellSize();
+        }
         if (clickStarted)
         {
             if (mouseExited)
@@ -76,8 +79,8 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                 {
                     // not occupied
                     testing.setTilesToOccupied();
-                    Instantiate(tower, center, Quaternion.identity);
                     Destroy(draggingDragObject);
+                    Instantiate(tower, center, Quaternion.identity);
                 }
                 
                 //Destroy(dragVisual.gameObject);
@@ -87,8 +90,11 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
             {
                 //dragVisual.transform.SetPositionAndRotation(new Vector3(Input.mousePosition.x,
                 //  Input.mousePosition.y), Quaternion.identity);
-                draggingDragObject.transform.SetPositionAndRotation(new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+                if (draggingDragObject != null)
+                {
+                    draggingDragObject.transform.SetPositionAndRotation(new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+                }
                 // calculate squares it is over to make red and green squares show for is placeable or not
                 //calculateCorners();
                 //testing.GetComponent<Testing>().setSquares(topLeftLocal, topRightLocal, bottomLeftLocal, bottomRightLocal);

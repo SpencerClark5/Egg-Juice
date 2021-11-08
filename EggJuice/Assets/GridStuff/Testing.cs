@@ -32,12 +32,16 @@ public class Testing : MonoBehaviour
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Testing : MonoBehaviour
 {
-    public PathFinding pathfinding;
+    //public PathFinding pathfinding;
+    public List<GameObject> chickens;
     [SerializeField] private GameObject square;
-    private GridBoy<PathNode> grid;
+    [SerializeField] private int numChickens;
+
+    public GridBoy<PathNode> grid;
     private const int WIDTH = 48;
     private const int HEIGHT = 20;
     private PathNode[] showingNodes;
@@ -87,6 +91,16 @@ public class Testing : MonoBehaviour
     public GridBoy<PathNode> getGrid()
     {
         return grid;
+    }
+
+    public int getNumChickens()
+    {
+        return numChickens;
+    }
+    // decrements numChickens
+    public void destroyChicken()
+    {
+        numChickens--;
     }
 
     public void setThings(int size, DragStartScript dragScript)
@@ -149,6 +163,11 @@ public class Testing : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public Vector3 getWorldPositionFromGrid(int x, int y)
+    {
+        return grid.GetWorldPosition(x, y);
     }
 }
 

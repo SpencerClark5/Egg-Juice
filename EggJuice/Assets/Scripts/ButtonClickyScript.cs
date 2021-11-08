@@ -18,7 +18,7 @@ public class ButtonClickyScript : MonoBehaviour
         btn.onClick.AddListener(ButtonClick);
         pfq = pf.GetComponent<Testing>();
         Debug.Log("pfqqqqqq: " + pfq);
-        pfqe = pfq.pathfinding;
+        //pfqe = pfq.pathfinding;
         //gb = pfqe.GetGrid();
         
        // btn.OnPointerUp.AddListener(buttonClick);
@@ -36,7 +36,7 @@ public class ButtonClickyScript : MonoBehaviour
         if (placeTower && Input.GetMouseButtonDown(0))
         {
             
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            /*Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Debug.Log("pathfindingscript!!!!" + pfqe);
             //pfq.pathfinding.GetGrid().GetHeight();
             Vector2Int v = pfq.pathfinding.GetGrid().GetXY(mousePosition);
@@ -49,7 +49,7 @@ public class ButtonClickyScript : MonoBehaviour
             {
                 Instantiate(tower, v2, Quaternion.identity);
                 placeTower = false;
-            }
+            }*/
         }
     }
 }

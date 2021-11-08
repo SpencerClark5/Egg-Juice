@@ -10,6 +10,9 @@ TagManager:
   - collisionDetecter
   - topLeftCollisionDetecter
   - SquareParent
+  - Chicken
+  - GameManager
+  - Testing
   layers:
   - Default
   - TransparentFX

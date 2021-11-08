@@ -14,8 +14,8 @@ public class PathNode
     public int gCost;
     public int hCost;
     public int fCost;
-    private Color color1 = new Color(0F, 1F, 0F, 1F);
-    private Color color2 = new Color(1F, 0F, 0F, 1F);
+    private Color color1 = new Color(0F, 1F, 0F, 0.5F);
+    private Color color2 = new Color(1F, 0F, 0F, 0.5F);
     private bool visible = false;
     private GameObject squareParent;
 

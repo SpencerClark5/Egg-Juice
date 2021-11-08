@@ -22,13 +22,13 @@ public class TowerProjectile : MonoBehaviour
         {
          EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();
             //grabs the enemy object inside of the enemyScript
-            enemy.Enemy.Damage(ProjectileDamage);
-
+            enemy.getStats().Damage(ProjectileDamage);
+            
             //destroys the projectile
             Destroy(this.gameObject);
 
             //if the enemy dies
-            if (enemy.Enemy.getHealth() == 0)
+            if (enemy.getStats().getHealth() == 0)
             {
                 //can call a death animation per enemy
                 Destroy(col.gameObject);

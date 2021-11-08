@@ -48,6 +48,7 @@ public class TowerScript : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D TowerRigidBody;
     TowerStats MyTower;
+    private List<GameObject> targets = new List<GameObject>();
     void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
@@ -65,9 +66,13 @@ public class TowerScript : MonoBehaviour
         //if an enemy comes into the range
         if (col.gameObject.tag == "Enemy")
         {
-            Target = col.gameObject;
-            TryAttack(Target);
-
+            //Target = col.gameObject;
+            Debug.Log("col.gameObject: " + col.gameObject);
+            targets.Add(col.gameObject);
+            if (targets.Count > 0)
+            {
+                TryAttack(targets[0]);
+            }
         }
     }
 
@@ -77,7 +82,11 @@ public class TowerScript : MonoBehaviour
 
         if (col.gameObject.tag == "Enemy")
         {
-            Target = null;
+            //Target = null;
+            if (targets.Count > 0)
+            {
+                targets.Remove(col.gameObject);
+            }
             //Debug.Log("Target is now null");
             //otherwise target nothing
         }
@@ -101,7 +110,7 @@ public class TowerScript : MonoBehaviour
         Vector3 TargetMoveDirection;
         IEnumerator WaitForAttack(float Speed)
         {
-            while (Target != null) {
+            while (targets.Count > 0) {
 
                 //spawns a projectile at the center of the tower
                 GameObject proj = Instantiate(Projectile, Ranged_Tower.position, Ranged_Tower.rotation);
@@ -112,7 +121,7 @@ public class TowerScript : MonoBehaviour
                 //sets the damage of the projectile equal to the tower damage
                 projectileScript.setDamage(MyTower.getDamage());
                 //finds the direction of which the target is moving
-                TargetMoveDirection = (GetTarget(GO).transform.position - transform.position).normalized * MyTower.GetPS();
+                TargetMoveDirection = (targets[0].transform.position - transform.position).normalized * MyTower.GetPS();
                 //gives the target a new velocity in that direction
                 ProjectileRB.velocity = new Vector3(TargetMoveDirection.x, TargetMoveDirection.y);
                 yield return new WaitForSecondsRealtime(Speed);
