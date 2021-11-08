@@ -98,7 +98,7 @@ public class EnemyScript : MonoBehaviour
     {
   //    GO = GetComponent<GameObject>();
         RB = GetComponent<Rigidbody2D>();
-        //RB.velocity = new Vector2(1, 0);
+        RB.velocity = new Vector2(1, 0);
         Enemy = new EnemyStats(RB.velocity, HP, DMG);
         testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
        
