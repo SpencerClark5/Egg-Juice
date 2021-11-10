@@ -630,7 +630,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3805645168238079001, guid: 99014263bfcd72f44b31bcbe9dec476f, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3805645168238079001, guid: 99014263bfcd72f44b31bcbe9dec476f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -671,6 +671,10 @@ PrefabInstance:
     - target: {fileID: 3805645168238079001, guid: 99014263bfcd72f44b31bcbe9dec476f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805645168238079002, guid: 99014263bfcd72f44b31bcbe9dec476f, type: 3}
+      propertyPath: data.dataString
+      value: UEsDBBQAAAgIAACQn+vAThy+SwIAAPMEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMty2zAM/BUPz01HfrbprVUcp4c8Jk4nF11gEbI4pkgNH7GdjP+9ICVZijs9mcYuwF0A1AcTytaYO21WRvB7zZH9GLFwZl9GPXiHB9hqtRbv2HFeBXdlIEHkPIMTmuLjkGZ1hc6I/KfaykBOKOiVKLSplnyLqbbOUrgAaZEgo13IVhT6GLED/Vxdh5QjnSbfwumdTtfJ6ETHHJVD01M7YkdrWF7lEqoaeZDck2cde9bQFJlpGcnXWaiupRS21cLcsY5eU6itJydE4ALIWxQQrJYotqULOofJj0Vh0bWiDBxvhKEWNVXZL930rQK7a5S9gfThnuk4impq3v8DXzVwYXR11107TsIVrhT57hmOOVg36OswfPNZt1d7kDvYSHwtUT3oldFecQKd8SHVW5zc9H/PztIS810fb6ReBH39/+kED6do/pBKUW3OjafAWurY7jh7NDSa3yQ4boZtS1A0qPhj8QW2wxVqgVthrCOodamCvI32JlDZMvYsuPEu1UZhDLeia1Qg3fGJyrjLCV5gg2svkFsIj6W9vMW6N3CREsM9P0kuoCe9Pw/Llnp/j7Z89E4Khb3oADxQn1KtVLNgw550aWtvCsgHaVsv+OfVYsVi8R1mm3wOOOWT6fhqDrNkusFFzmcFFPOExd0TinyCfGqEtu2hqam+uKI9674ho5WBOi47N7BfifdKD1ouVKHXuUFUj02Fs3A0dAk9S77kghq0RueEivNmHxmTOt8hz86Fsuh0eXAGsr5Kxmrxpl2IZCyNH42MndjpL1BLAwQUAAAICAAAkJ/raYkF3G0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UpqZmUWiSVKyaWKqcYqRsaGuaaKJgXFSqllyiklaYpqpgVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAkJ/rwE4cvksCAADzBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAkJ/raYkF3G0AAAB4AAAACQAkAAAAAAAAAAAAAACYAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAFADAAAAAA==
       objectReference: {fileID: 0}
     - target: {fileID: 3805645168238079003, guid: 99014263bfcd72f44b31bcbe9dec476f, type: 3}
       propertyPath: m_Name
@@ -954,7 +958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1049992709
 GameObject:
@@ -2060,7 +2064,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882010123
 GameObject:
