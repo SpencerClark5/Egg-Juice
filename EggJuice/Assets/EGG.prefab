@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4412123561390357972}
   - component: {fileID: 8087108217366676115}
   - component: {fileID: 812241045774808194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EGG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941173b5c699ac8499ed9706c3be2416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Chicken: {fileID: 3504434371431234237, guid: c18a61d887496e841b3d7e013916cf34, type: 3}
-  EGG: {fileID: 7955757708087373628}
+  Chicken: {fileID: 0}
+  EGG: {fileID: 0}
 --- !u!58 &812241045774808194
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class clickyegg : MonoBehaviour
 {
-    private int currency=0;
     [SerializeField] private GameObject Chicken;
     [SerializeField] private GameObject EGG;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject EggObject = Instantiate(EGG, this.transform.position, this.transform.rotation);
-        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
+        if (EGG != null)
+        {
+            GameObject EggObject = Instantiate(EGG, this.transform.position, this.transform.rotation);
+           
+        }
     }
 
     public void SpawnEgg()
@@ -30,31 +32,34 @@ public class clickyegg : MonoBehaviour
 
     public void pickUpEgg()
     {
-        
-        
-      //  Debug.Log(CurrencyText.text);
-       // GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = CurrencyText.text;
-       Destroy(this.gameObject);
-       Debug.Log("Destroyed");
+
+
+        //  Debug.Log(CurrencyText.text);
+        // GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = CurrencyText.text;
+        Debug.Log("Destroyed");
+        Destroy(this.gameObject);
+      
     }
 
 
     //when the egg is clicked
     public void OnMouseDown()
     {
+        
         pickUpEgg();
         
        
     }
 
-    /*
+    
     void OnDestroy()
     {
-      //  currency++;
-        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
-            //"Currency: " + currency;
+        GameManager GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //increases currecny by 1
+        GM.IncrementCurrency(1);
+        
     }
-    */
+   
     // Update is called once per frame
     void Update()
     {

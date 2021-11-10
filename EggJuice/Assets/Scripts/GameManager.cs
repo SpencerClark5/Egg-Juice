@@ -4,12 +4,14 @@ using UnityEngine;
 using System;
 
 
-public class GameManager : MonoBehaviour { 
+public class GameManager : MonoBehaviour {
 
-
+   private int currency=0;
     public static GameManager Instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
+    // spawn rate delay
+    [SerializeField] private float spawnRate;
 
 
     //round 1 enemies, 3 enemies
@@ -25,6 +27,15 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
         Instance = this;
+    }
+
+    public void  IncrementCurrency(int cur)
+    {
+        //increases currecy based off of what was clicked
+        currency += cur;
+        //this updates the text
+        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
+
     }
 
     public void UpdateGameState(GameState newState) {
@@ -70,6 +81,9 @@ public class GameManager : MonoBehaviour {
        
         RoundOne.Add(Enemies[0]);
     
+
+
+
     }
                                                         
 
@@ -84,17 +98,22 @@ public class GameManager : MonoBehaviour {
         ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
         EnemyScript enemy = GameObject.FindWithTag("GameManager").GetComponent<EnemyScript>();
         PrepareEnemys();
-        
+        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
         UpdateGameState(GameState.Round);
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
+        ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
+      //  Debug.Log(ChickenCount);
         if (ChickenCount == 0)
         {
             UpdateGameState(GameState.Lose);
+         //   Debug.Log("updated!");
         }
+        */
     }
 
  private void Spawn(List<GameObject> enemyArray)
@@ -116,9 +135,15 @@ public class GameManager : MonoBehaviour {
         //instantiate enemy at the position of the spawn point
 
         Instantiate(enemyArray[EnemyToSpawn], SpawnPoints[SpawnPoint].transform.position,SpawnPoints[SpawnPoint].transform.rotation);
-     //   Debug.Log("Spawned!");
+        //   Debug.Log("Spawned!");
         //give the enemy the stats
+
+        //dont inlude this part for endless mode
+
+
+        enemyArray.RemoveAt(EnemyToSpawn);
         //remove enemy from the list
+        
     }
 
 private void HandlePreRound(){
@@ -148,7 +173,7 @@ private List<GameObject> getRoundEnemies(int round)
     private void HandleRound()
     {
 
-        StartCoroutine(WaitForSpawn(.5f));
+        StartCoroutine(WaitForSpawn(spawnRate));
         Round++;
 
 
@@ -182,8 +207,19 @@ private List<GameObject> getRoundEnemies(int round)
 
 private void handleLose()
 {
+        /*
         Debug.Log("You Lose");
-}
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        Debug.Log("You Lose");
+        */
+    }
     //make an array of enemies per level
     //make spawn function
 

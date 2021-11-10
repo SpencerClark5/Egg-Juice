@@ -69,6 +69,7 @@ public class Testing : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -84,8 +85,8 @@ public class Testing : MonoBehaviour
                     Debug.DrawLine(new Vector3(path[i].x, path[i].y) * 10f + Vector3.one * 5f,
                         new Vector3(path[i + 1].x, path[i + 1].y));
                 }
-            }*/
-        }
+            }
+       }*/
     }
 
     public GridBoy<PathNode> getGrid()
