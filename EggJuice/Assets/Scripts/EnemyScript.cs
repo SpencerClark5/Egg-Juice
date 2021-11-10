@@ -41,9 +41,9 @@ public class EnemyScript : MonoBehaviour
         //if enemy collides with tower
         if (col.gameObject.tag == "Tower")
         {
-            Debug.Log("ouch");
+            //Debug.Log("ouch");
             //grabs the script on the tower
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
 
             //TowerScript tower = col.gameObject.GetComponent<TowerScript>();
             // Debug.Log(tower.getDamage());

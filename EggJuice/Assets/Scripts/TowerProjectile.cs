@@ -36,6 +36,10 @@ public class TowerProjectile : MonoBehaviour
 
           
         }
+        if (col.gameObject.tag == "Boundary")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private Rigidbody2D RB;
