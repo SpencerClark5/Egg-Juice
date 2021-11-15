@@ -70,7 +70,7 @@ public class clickyegg : MonoBehaviour
     
     void OnDestroy()
     {
-        if (this.gameObject.tag != "Chicken")
+        if (this.gameObject.tag != "Chicken" && !KilledByEnemy)
         {
 
 

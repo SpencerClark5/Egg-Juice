@@ -70,6 +70,14 @@ public class EnemyScript : MonoBehaviour
             Destroy(col.gameObject);
             
         }
+        if (col.gameObject.tag == "Egg")
+        {
+            col.gameObject.GetComponent<clickyegg>().setKilledByEnemy();
+            testing.destroyEgg();
+            testing.eggs.Remove(col.gameObject);
+            testing.eggsAndChickens.Remove(col.gameObject);
+            Destroy(col.gameObject);
+        }
         /*
         //if a bullet collides with enemy
         if (col.gameObject.tag == "Projectiles")

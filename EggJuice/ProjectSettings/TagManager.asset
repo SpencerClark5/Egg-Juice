@@ -15,6 +15,7 @@ TagManager:
   - Testing
   - Boundary
   - Decoy
+  - Egg
   layers:
   - Default
   - TransparentFX
