@@ -11,6 +11,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     [SerializeField] private GameObject tower;
     [SerializeField] private Image visual;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private GameManager gameManager;
     private Testing testing;
     [SerializeField] private GameObject dragObject;
     // holds the world position of the top left tile
@@ -57,34 +58,11 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
 
                 draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                     Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
-                
+
                 //draggingDragObject.transform.SetParent(canvas.transform);
                 draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
                 Debug.Log(draggingDragObject.transform.position);
                 testing.setThings(width * height, this);
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                clickStarted = false;
-                mouseExited = false;
-                dragging = false;
-                // check if any tiles in tile array are occupied
-                if (testing.checkForOccupied())
-                {
-                    // occupied
-                    // if they are don't instatiate the tower and just set it up to be dragged again
-                    Destroy(draggingDragObject);
-                }
-                else
-                {
-                    // not occupied
-                    testing.setTilesToOccupied();
-                    Destroy(draggingDragObject);
-                    Instantiate(tower, center, Quaternion.identity);
-                }
-                
-                //Destroy(dragVisual.gameObject);
-                // make rad and greed squares no longer visible and spawn tower
             }
             if (dragging)
             {
@@ -94,6 +72,29 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                 {
                     draggingDragObject.transform.SetPositionAndRotation(new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                         Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    clickStarted = false;
+                    mouseExited = false;
+                    dragging = false;
+                    // check if any tiles in tile array are occupied
+                    if (testing.checkForOccupied())
+                    {
+                        // occupied
+                        // if they are don't instatiate the tower and just set it up to be dragged again
+                        Destroy(draggingDragObject);
+                    }
+                    else
+                    {
+                        // not occupied
+                        testing.setTilesToOccupied();
+                        Destroy(draggingDragObject);
+                        Instantiate(tower, center, Quaternion.identity);
+                    }
+
+                    //Destroy(dragVisual.gameObject);
+                    // make rad and greed squares no longer visible and spawn tower
                 }
                 // calculate squares it is over to make red and green squares show for is placeable or not
                 //calculateCorners();
@@ -140,7 +141,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     public void OnMouseDrag()
     {
         Debug.Log("DragDetected");
-        clickStarted = true;
+        //clickStarted = true;
     }
     private void OnMouseExit()
     {
@@ -165,9 +166,15 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
         {
             if (!dragging)
             {
+
                 exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mouseExited = true;
+               // if (Mathf.Abs(exitPos.magnitude - startPos.magnitude) > 1)
+                //{
+                    mouseExited = true;
+                //}
+
             }
         }
     }
+
 }

@@ -6,6 +6,9 @@ public class EnemyScript : MonoBehaviour
     private Testing testing;
     [SerializeField] int HP;
     [SerializeField] int DMG;
+    [SerializeField] AstarAI astarAI;
+    // true if moving to the right, false if moving to the left
+    private bool movementDirection = true;
     public class EnemyStats
     {
         Vector3 speed;
@@ -41,7 +44,7 @@ public class EnemyScript : MonoBehaviour
         //if enemy collides with tower
         if (col.gameObject.tag == "Tower")
         {
-            //Debug.Log("ouch");
+            Debug.Log("Towerouch");
             //grabs the script on the tower
             //Destroy(this.gameObject);
 
@@ -53,9 +56,20 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("chickenOuch");
             testing.destroyChicken();
             testing.chickens.Remove(col.gameObject);
+            testing.eggsAndChickens.Remove(col.gameObject);
             Destroy(col.gameObject);
         }
-
+        if (col.gameObject.tag == "Decoy")
+        {
+            Debug.Log("DecoyOuch");
+            col.gameObject.GetComponent<DecoyScript>().setGettingDestroyed();
+            astarAI.removeDecoy(col.gameObject);
+            astarAI.setDestroying(true);
+            //testing.destroyDecoy();
+            //testing.decoys.Remove(col.gameObject);
+            Destroy(col.gameObject);
+            
+        }
         /*
         //if a bullet collides with enemy
         if (col.gameObject.tag == "Projectiles")
@@ -98,7 +112,9 @@ public class EnemyScript : MonoBehaviour
     {
   //    GO = GetComponent<GameObject>();
         RB = GetComponent<Rigidbody2D>();
-        RB.velocity = new Vector2(1, 0);
+        //RB.velocity = new Vector2(1, 0);
+
+        // get speed
         Enemy = new EnemyStats(RB.velocity, HP, DMG);
         testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
        
@@ -113,7 +129,23 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (this.gameObject.tag != "GameManager")
+        {
+            if (this.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0 && movementDirection)
+            {
+                // turn left
+                Debug.Log("turn left");
+                movementDirection = false;
+                gameObject.transform.localScale.Set(-1, 1, 1);
+            }
+            else if (movementDirection == false)
+            {
+                Debug.Log("turn right");
+                // turn right
+                movementDirection = true;
+                gameObject.transform.localScale.Set(1, 1, 1);
+            }
+        }
        
     }
 }

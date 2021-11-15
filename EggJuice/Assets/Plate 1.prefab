@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 300
   DMG: 5
+  astarAI: {fileID: 1827747518284336903}
 --- !u!50 &2353718663556939929
 Rigidbody2D:
   serializedVersion: 4
@@ -309,3 +310,6 @@ MonoBehaviour:
   seeker: {fileID: 2353718663556939924}
   speed: 2
   EnemyOrChicken: 1
+  targetChicken: 1
+  targetEgg: 1
+  decoys: []

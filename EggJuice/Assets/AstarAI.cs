@@ -3,6 +3,7 @@ using UnityEngine;
 // This line should always be present at the top of scripts which use pathfinding
 using Pathfinding;
 using System.Collections;
+using System.Collections.Generic;
 
 [HelpURL("http://arongranberg.com/astar/docs/class_partial1_1_1_astar_a_i.php")]
 public class AstarAI : MonoBehaviour
@@ -23,7 +24,12 @@ public class AstarAI : MonoBehaviour
     private bool reachedEndOfPath;
 
     [SerializeField] private bool EnemyOrChicken;
+    [SerializeField] private bool targetChicken;
+    [SerializeField] private bool targetEgg;
+    [SerializeField] private List<GameObject> decoys;
+    private int numDecoys = 0;
     private Testing testing;
+    private bool destroying = false;
 
     private Vector3 cPos;
     private Vector3 ePos;
@@ -52,66 +58,77 @@ public class AstarAI : MonoBehaviour
         {
             if (EnemyOrChicken)
             {
-                //Debug.Log("choosing new destination!");
-                /*if (chicken)
+                if (targetEgg && targetChicken)
                 {
-                    targetPosition = chicken.transform;
+                    // finds decoy
+                    if (numDecoys > 0 && decoys[0].transform != null)
+                    {
+                        calculatePath(numDecoys, decoys);
+                    }
+                    // find new chicken
+                    else if (testing.getEggsAndChickens() > 0 && testing.eggsAndChickens[0].transform != null)
+                    {
+                        calculatePath(testing.getEggsAndChickens(), testing.eggsAndChickens);
+                    }
+                    yield return new WaitForSeconds(0.3f);
                 }
-                else
-                {*/
-                // find new chicken
-                if (testing.getNumChickens() > 0 && testing.chickens[0].transform != null)
+                else if (targetEgg)
                 {
-                    shortestDistance = calculateDistance(testing.chickens[0].transform, transform);
-                    closestChicken = testing.chickens[0];
-
-                    for (int i = 0; i < testing.getNumChickens(); i++)
+                    if (testing.getNumEggs() > 0 && testing.eggs[0].transform != null)
                     {
-                        if (testing.chickens[i].transform != null)
-                        {
-                            cPos = testing.chickens[i].transform.position;
-                            ePos = transform.position;
-                            distance = calculateDistance(testing.chickens[i].transform, transform);
-                            //Debug.Log(distance);
-
-                            if (Mathf.Abs(distance) < Mathf.Abs(shortestDistance))
-                            {
-                                //Debug.Log("shortestDistance: " + shortestDistance);
-                                shortestDistance = distance;
-                                closestChicken = testing.chickens[i];
-                            }
-                        }
+                        calculatePath(testing.getNumEggs(), testing.eggs);
                     }
-                    if (closestChicken.transform != null)
-                    {
-                        //targetPosition.position = closestChicken.transform.position;
-                        //}
-                        //Debug.Log("targetEnemyPosition: " + targetPosition);
-                        seeker.StartPath(transform.position, closestChicken.transform.position, OnPathComplete);
-                    }
+                    yield return new WaitForSeconds(0.3f);
                 }
-                //path.BlockUntilCalculated();
+                else if (targetChicken)
+                {
+                    // finds decoy
+                    if (numDecoys > 0 && decoys[0].transform != null)
+                    {
+                        calculatePath(numDecoys, decoys);
+                    }
+                    // find new chicken
+                    else if (testing.getNumChickens() > 0 && testing.chickens[0].transform != null)
+                    {
+                        calculatePath(testing.getNumChickens(), testing.chickens);
+                    }
+                    yield return new WaitForSeconds(0.3f);
+                }
                 yield return new WaitForSeconds(0.3f);
+
             }
             else
             {
-                // pick random location
-                /*int x = Random.Range(0, 48);
-                int y = Random.Range(0, 20);
-                Debug.Log("Range: " + x);
-                Debug.Log("Ranch: " + y);*/
-                //targetPosition.position = ; 
-                //Debug.Log("targetPositionFor_Chicken: " + targetPosition.position);
-
-                // Debug.Log("targetChickenPosition: " + targetPosition);
-                //Debug.Log("Seekder: " + testing.getWorldPositionFromGrid(Random.Range(0, 48), Random.Range(0, 20)));
-                this.seeker.StartPath(transform.position, new Vector3(Random.Range(-12, 10), Random.Range(-5, 5)), OnPathComplete);
+                this.seeker.StartPath(transform.position, new Vector3(Random.Range(-8, 7), Random.Range(-5, 5)), OnPathComplete);
 
                 yield return new WaitForSeconds(5f);
             }
-            //seeker.CancelCurrentPathRequest();
-            //reachedEndOfPath = true;
-            //path.Release(path, false);
+        }
+    }
+
+    private void calculatePath(int num, List<GameObject> list)
+    {
+        shortestDistance = calculateDistance(list[0].transform, transform);
+        closestChicken = list[0];
+
+        for (int i = 0; i < num; i++)
+        {
+            if (list[i].transform != null)
+            {
+                cPos = list[i].transform.position;
+                ePos = transform.position;
+                distance = calculateDistance(list[i].transform, transform);
+
+                if (Mathf.Abs(distance) < Mathf.Abs(shortestDistance))
+                {
+                    shortestDistance = distance;
+                    closestChicken = list[i];
+                }
+            }
+        }
+        if (closestChicken.transform != null)
+        {
+            seeker.StartPath(transform.position, closestChicken.transform.position, OnPathComplete);
         }
     }
 
@@ -191,5 +208,32 @@ public class AstarAI : MonoBehaviour
         // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
         transform.position += velocity * Time.deltaTime;
 
+    }
+
+    public void removeDecoy(GameObject decoy)
+    {
+        decoys.Remove(decoy);
+        numDecoys--;
+    }
+
+    public int getNumDecoys()
+    {
+        return numDecoys;
+    }
+
+    public void addDecoys(GameObject decoy)
+    {
+        decoys.Add(decoy);
+        numDecoys++;
+    }
+
+    public bool getDestroying()
+    {
+        return destroying;
+    }
+
+    public void setDestroying(bool destroying)
+    {
+        this.destroying = destroying;
     }
 }

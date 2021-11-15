@@ -38,9 +38,15 @@ public class Testing : MonoBehaviour
 {
     //public PathFinding pathfinding;
     public List<GameObject> chickens;
+    public List<GameObject> decoys;
+    public List<GameObject> eggs;
+    public List<GameObject> eggsAndChickens;
     [SerializeField] private GameObject square;
     [SerializeField] private int numChickens;
-
+    [SerializeField] private int numDecoys;
+    [SerializeField] private int numEggs;
+    [SerializeField] private int numEggsChickens;
+    
     public GridBoy<PathNode> grid;
     private const int WIDTH = 48;
     private const int HEIGHT = 20;
@@ -102,6 +108,19 @@ public class Testing : MonoBehaviour
     public void destroyChicken()
     {
         numChickens--;
+        numEggsChickens--;
+    }
+    
+    public void destroyDecoy()
+    {
+        numDecoys--;
+        //numEggsChickens--;
+    }
+    
+    public void destroyEgg()
+    {
+        numEggs--;
+        numEggsChickens--;
     }
 
     public void setThings(int size, DragStartScript dragScript)
@@ -170,5 +189,43 @@ public class Testing : MonoBehaviour
     {
         return grid.GetWorldPosition(x, y);
     }
-}
 
+    public void addChicken(GameObject chicken)
+    {
+        chickens.Add(chicken);
+        numChickens++;
+    }
+
+    public void addDecoy(GameObject decoy)
+    {
+        decoys.Add(decoy);
+        numDecoys++;
+    }
+    
+    public void addEgg(GameObject egg)
+    {
+        decoys.Add(egg);
+        numDecoys++;
+    }
+
+    public int getNumDecoys()
+    {
+        return numDecoys;
+    }
+    
+    public int getNumEggs()
+    {
+        return numEggs;
+    }
+    
+    public int getEggsAndChickens()
+    {
+        return numEggs;
+    }
+
+    public void removeDecoy(GameObject decoy)
+    {
+        decoys.Remove(decoy);
+        numDecoys--;
+    }
+}
