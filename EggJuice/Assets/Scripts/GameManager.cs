@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
     // spawn rate delay
-    [SerializeField] private float spawnRate;
+    [SerializeField] public float spawnRate;
 
 
     //round 1 enemies, 3 enemies
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private List<GameObject> Enemies;
     [SerializeField] private List<GameObject> SpawnPoints;
     private List<GameObject> RoundOne = new List<GameObject>();
-    private int Round;
+    public int Round;
     int EnemyCount;
     int ChickenCount;
     //when we add eggs hatching this will have to be updated
@@ -36,6 +36,15 @@ public class GameManager : MonoBehaviour {
         //this updates the text
         GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
 
+    }
+
+    public void RemoveCurrency(int cost)
+    {
+
+
+
+        currency -= cost;
+        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
     }
 
     public void UpdateGameState(GameState newState) {
@@ -141,7 +150,7 @@ public class GameManager : MonoBehaviour {
         //dont inlude this part for endless mode
 
 
-        enemyArray.RemoveAt(EnemyToSpawn);
+       // enemyArray.RemoveAt(EnemyToSpawn);
         //remove enemy from the list
         
     }
@@ -152,7 +161,7 @@ private void HandlePreRound(){
 
 }
     
-private List<GameObject> getRoundEnemies(int round)
+public List<GameObject> getRoundEnemies(int round)
     {
        
         return RoundOne;
@@ -173,12 +182,14 @@ private List<GameObject> getRoundEnemies(int round)
     private void HandleRound()
     {
 
+        //starts the counter for spawning enemies
         StartCoroutine(WaitForSpawn(spawnRate));
         Round++;
 
+        //determine a random time when it will spawn in the round between 0 and enemies*spawn rate
 
 
-        //do spawning
+        
 
 
 

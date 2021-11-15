@@ -7,24 +7,34 @@ public class clickyegg : MonoBehaviour
 {
     [SerializeField] private GameObject Chicken;
     [SerializeField] private GameObject EGG;
-
+    GameManager GM;
 
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         if (EGG != null)
         {
-            GameObject EggObject = Instantiate(EGG, this.transform.position, this.transform.rotation);
-           
+            //   GameObject EggObject = Instantiate(EGG, this.transform.position, this.transform.rotation);
+            SpawnEgg();
         }
     }
 
     public void SpawnEgg()
     {
-        //wait for the condidition for the egg to spawn (probably round based)
-        //GameObject EggObject = Instantiate(EGG, Chicken.position, Chicken.rotation);
+        //when the game state is changed
+        if (GM.State == GameManager.GameState.Round)
+        {
+            Debug.Log("Looking to spawn");
+            //determine a random time when it will spawn in the round between 0 and enemies*spawn rate
+            float SpawnTime = UnityEngine.Random.Range(0, GM.getRoundEnemies(GM.Round).Count);
+            Debug.Log("Picked Spawn time " + SpawnTime);
+            //start the counter to spawn the egg
+            WaitToSpawn(SpawnTime);
+        }
 
 
+        
 
 
     }
@@ -65,5 +75,11 @@ public class clickyegg : MonoBehaviour
     {
       
     }
- 
+ IEnumerator WaitToSpawn(float Wait)
+    {
+        Debug.Log("spawning..");
+        GameObject EggObject = Instantiate(EGG, Chicken.transform.position, Chicken.transform.rotation);
+        yield return new WaitForSecondsRealtime(Wait);
+    }
+
 }

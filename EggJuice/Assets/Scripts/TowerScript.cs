@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TowerScript : MonoBehaviour
 {
+    [SerializeField] private int Cost;
+    [SerializeField] private int Health;
+    [SerializeField] private int DMG;
+    [SerializeField] private int FireRate;
+    [SerializeField] private int ProjectileSpeed;
     private class TowerStats
     {
         int TowerHealth;
@@ -52,7 +57,7 @@ public class TowerScript : MonoBehaviour
     void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
-        MyTower = new TowerStats(1, 100, 1, .01, 3);
+        MyTower = new TowerStats(Cost, Health, DMG, FireRate,ProjectileSpeed);
         //   StartCoroutine(Wait());
         // TowerProjectile TP = Projectile.GetComponent<TowerProjectile>();
         //TowerStats Fence = new TowerStats(2, 100, 10);
