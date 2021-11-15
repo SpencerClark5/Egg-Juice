@@ -8,6 +8,7 @@ public class clickyegg : MonoBehaviour
     [SerializeField] private GameObject Chicken;
     [SerializeField] private GameObject EGG;
     GameManager GM;
+    private bool KilledByEnemy = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,11 @@ public class clickyegg : MonoBehaviour
             //   GameObject EggObject = Instantiate(EGG, this.transform.position, this.transform.rotation);
             SpawnEgg();
         }
+    }
+
+    public void setKilledByEnemy()
+    {
+        KilledByEnemy = true;
     }
 
     public void SpawnEgg()
@@ -55,19 +61,23 @@ public class clickyegg : MonoBehaviour
     //when the egg is clicked
     public void OnMouseDown()
     {
-        
+        if (this.gameObject.tag != "Chicken") {
         pickUpEgg();
-        
+    }
        
     }
 
     
     void OnDestroy()
     {
-        GameManager GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        //increases currecny by 1
-        GM.IncrementCurrency(1);
-        
+        if (this.gameObject.tag != "Chicken")
+        {
+
+
+            GameManager GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            //increases currecny by 1
+            GM.IncrementCurrency(1);
+        }
     }
    
     // Update is called once per frame

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public static event Action<GameState> OnGameStateChanged;
     // spawn rate delay
     [SerializeField] public float spawnRate;
+    clickyegg Chicken;
 
 
     //round 1 enemies, 3 enemies
@@ -77,6 +78,8 @@ public class GameManager : MonoBehaviour {
        OnGameStateChanged?.Invoke(newState);
     }
    
+
+
     private void PrepareEnemys()
     {
         //  Enemy Round1Enemys = new ArrayList();
@@ -104,6 +107,8 @@ public class GameManager : MonoBehaviour {
         //have to arrays, one of enemies that we could spawn, and one that we want to spawn this round
         //  PrepareEnemys();
         //get the enemy script?
+
+       // Chicken = GameObject.
         ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
         EnemyScript enemy = GameObject.FindWithTag("GameManager").GetComponent<EnemyScript>();
         PrepareEnemys();
