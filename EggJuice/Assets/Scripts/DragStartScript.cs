@@ -14,6 +14,8 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     [SerializeField] private GameManager gameManager;
     private Testing testing;
     [SerializeField] private GameObject dragObject;
+    [SerializeField] private int cost;
+    [SerializeField] private GameObject darkTransparentSquare;
     // holds the world position of the top left tile
     private Vector3 topLeftCenter;
     private GameObject draggingDragObject;
@@ -29,6 +31,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     private Vector3 bottomRightLocal;
     private float cellSize = -5;
     private Vector3 center;
+    private bool canAfford = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,64 +44,80 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
         {
             cellSize = testing.GetComponent<Testing>().getGrid().GetCellSize();
         }
-        if (clickStarted)
+        if (gameManager.getCurrency() >= cost && !canAfford)
         {
-            if (mouseExited)
+            // can afford the tower
+            darkTransparentSquare.SetActive(false);
+            canAfford = true;
+        }
+        else if (gameManager.getCurrency() < cost && canAfford)
+        {
+            // cannot afford the tower
+            darkTransparentSquare.SetActive(true);
+            canAfford = false;
+        }
+        else if (canAfford)
+        {
+            if (clickStarted)
             {
-                mouseExited = false;
-                dragging = true;
-                Debug.Log("exited");
-                //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
-                //  Input.mousePosition.y),
-                //Quaternion.identity);
-
-                //testing.remakeListArray(width, height);
-
-                //dragVisual.transform.SetParent(canvas.transform);
-
-                draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
-
-                //draggingDragObject.transform.SetParent(canvas.transform);
-                draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
-                Debug.Log(draggingDragObject.transform.position);
-                testing.setThings(width * height, this);
-            }
-            if (dragging)
-            {
-                //dragVisual.transform.SetPositionAndRotation(new Vector3(Input.mousePosition.x,
-                //  Input.mousePosition.y), Quaternion.identity);
-                if (draggingDragObject != null)
+                if (mouseExited)
                 {
-                    draggingDragObject.transform.SetPositionAndRotation(new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
-                }
-                if (Input.GetMouseButtonUp(0))
-                {
-                    clickStarted = false;
                     mouseExited = false;
-                    dragging = false;
-                    // check if any tiles in tile array are occupied
-                    if (testing.checkForOccupied())
-                    {
-                        // occupied
-                        // if they are don't instatiate the tower and just set it up to be dragged again
-                        Destroy(draggingDragObject);
-                    }
-                    else
-                    {
-                        // not occupied
-                        testing.setTilesToOccupied();
-                        Destroy(draggingDragObject);
-                        Instantiate(tower, center, Quaternion.identity);
-                    }
+                    dragging = true;
+                    Debug.Log("exited");
+                    //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
+                    //  Input.mousePosition.y),
+                    //Quaternion.identity);
 
-                    //Destroy(dragVisual.gameObject);
-                    // make rad and greed squares no longer visible and spawn tower
+                    //testing.remakeListArray(width, height);
+
+                    //dragVisual.transform.SetParent(canvas.transform);
+
+                    draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
+
+                    //draggingDragObject.transform.SetParent(canvas.transform);
+                    draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
+                    Debug.Log(draggingDragObject.transform.position);
+                    testing.setThings(width * height, this);
                 }
-                // calculate squares it is over to make red and green squares show for is placeable or not
-                //calculateCorners();
-                //testing.GetComponent<Testing>().setSquares(topLeftLocal, topRightLocal, bottomLeftLocal, bottomRightLocal);
+                if (dragging)
+                {
+                    //dragVisual.transform.SetPositionAndRotation(new Vector3(Input.mousePosition.x,
+                    //  Input.mousePosition.y), Quaternion.identity);
+                    if (draggingDragObject != null)
+                    {
+                        draggingDragObject.transform.SetPositionAndRotation(new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                            Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+                    }
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        clickStarted = false;
+                        mouseExited = false;
+                        dragging = false;
+                        // check if any tiles in tile array are occupied
+                        if (testing.checkForOccupied())
+                        {
+                            // occupied
+                            // if they are don't instatiate the tower and just set it up to be dragged again
+                            Destroy(draggingDragObject);
+                        }
+                        else
+                        {
+                            // not occupied
+                            testing.setTilesToOccupied();
+                            Destroy(draggingDragObject);
+                            Instantiate(tower, center, Quaternion.identity);
+                            gameManager.RemoveCurrency(cost);
+                        }
+
+                        //Destroy(dragVisual.gameObject);
+                        // make rad and greed squares no longer visible and spawn tower
+                    }
+                    // calculate squares it is over to make red and green squares show for is placeable or not
+                    //calculateCorners();
+                    //testing.GetComponent<Testing>().setSquares(topLeftLocal, topRightLocal, bottomLeftLocal, bottomRightLocal);
+                }
             }
         }
     }

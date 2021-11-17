@@ -123,6 +123,13 @@ public class Testing : MonoBehaviour
         numEggsChickens--;
     }
 
+    public void removeEgg(GameObject egg)
+    {
+        eggs.Remove(egg);
+        eggsAndChickens.Remove(egg);
+        destroyEgg();
+    }
+
     public void setThings(int size, DragStartScript dragScript)
     {
         this.size = size;
