@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 2353718663556939924}
   - component: {fileID: 2353718663556939927}
   - component: {fileID: 1827747518284336903}
+  - component: {fileID: -8406560889866332005}
   m_Layer: 0
   m_Name: Plate 1
   m_TagString: Enemy
@@ -313,3 +314,17 @@ MonoBehaviour:
   targetChicken: 1
   targetEgg: 1
   decoys: []
+--- !u!114 &-8406560889866332005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353718663556939932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36e254ff987a2545a1be9872d37bc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetObject: {fileID: 2353718662629315511}
+  rb: {fileID: 2353718663556939929}

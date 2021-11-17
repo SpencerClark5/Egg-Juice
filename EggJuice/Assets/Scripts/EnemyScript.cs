@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] int DMG;
     [SerializeField] AstarAI astarAI;
     // true if moving to the right, false if moving to the left
-    private bool movementDirection = true;
+    
     public class EnemyStats
     {
         Vector3 speed;
@@ -137,23 +137,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject.tag != "GameManager")
-        {
-            if (this.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0 && movementDirection)
-            {
-                // turn left
-                Debug.Log("turn left");
-                movementDirection = false;
-                gameObject.transform.localScale.Set(-1, 1, 1);
-            }
-            else if (movementDirection == false)
-            {
-                Debug.Log("turn right");
-                // turn right
-                movementDirection = true;
-                gameObject.transform.localScale.Set(1, 1, 1);
-            }
-        }
+        
        
     }
 }
