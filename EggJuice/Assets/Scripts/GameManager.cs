@@ -103,15 +103,15 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-
+        PrepareEnemys();
         //have to arrays, one of enemies that we could spawn, and one that we want to spawn this round
         //  PrepareEnemys();
         //get the enemy script?
 
-       // Chicken = GameObject.
+        // Chicken = GameObject.
         ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
         EnemyScript enemy = GameObject.FindWithTag("GameManager").GetComponent<EnemyScript>();
-        PrepareEnemys();
+        
         GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
         UpdateGameState(GameState.Round);
     }
@@ -186,20 +186,40 @@ public List<GameObject> getRoundEnemies(int round)
 
     private void HandleRound()
     {
-
+        Round++;
         //starts the counter for spawning enemies
         StartCoroutine(WaitForSpawn(spawnRate));
-        Round++;
 
+        GameObject[] chicknsForEvent = GameObject.FindGameObjectsWithTag("Chicken");
+
+        //use this to hatch eggs
+        GameObject[] eggsForEvent = GameObject.FindGameObjectsWithTag("Egg");
+
+        
+
+
+        for(int i=0; i < chicknsForEvent.Length; i++)
+        {
+            clickyegg Script = chicknsForEvent[i].GetComponent<clickyegg>();
+            Script.GameStateChange(GameState.Round.ToString());
+        }
+
+
+
+        for (int i = 0; i < eggsForEvent.Length; i++)
+        {
+            clickyegg Script = eggsForEvent[i].GetComponent<clickyegg>();
+            Script.GameStateChange(GameState.Round.ToString());
+        }
         //determine a random time when it will spawn in the round between 0 and enemies*spawn rate
 
 
-        
 
 
 
 
-        
+
+
 
     }
 
@@ -238,7 +258,10 @@ private void handleLose()
     }
     //make an array of enemies per level
     //make spawn function
-
+    public int getCurrency()
+    {
+        return currency;
+    }
     public enum GameState
     {
         PreRound,

@@ -18,7 +18,7 @@ public class TowerProjectile : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         //if enemy collides with tower
-        Debug.Log("collidedwithsomething");
+       // Debug.Log("collidedwithsomething");
         if (col.gameObject.tag == "Enemy")
         {
          EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();

@@ -67,33 +67,38 @@ public class TowerScript : MonoBehaviour
     GameObject Target;
     public void OnTriggerEnter2D(Collider2D col)
     {
-
-        //if an enemy comes into the range
-        if (col.gameObject.tag == "Enemy")
+        if (this.gameObject.name == "Ranged_Tower")
         {
-            //Target = col.gameObject;
-            Debug.Log("col.gameObject: " + col.gameObject);
-            targets.Add(col.gameObject);
-            if (targets.Count > 0)
+
+
+            //if an enemy comes into the range
+            if (col.gameObject.tag == "Enemy")
             {
-                TryAttack(targets[0]);
-            }
-        }
+                //Target = col.gameObject;
+                Debug.Log("col.gameObject: " + col.gameObject);
+                targets.Add(col.gameObject);
+                if (targets.Count > 0)
+                {
+                    TryAttack(targets[0]);
+                }
+        } }
     }
 
     public void OnTriggerExit2D(Collider2D col)
     {
-       
-
-        if (col.gameObject.tag == "Enemy")
+        if (this.gameObject.name == "Ranged_Tower")
         {
-            //Target = null;
-            if (targets.Count > 0)
+
+            if (col.gameObject.tag == "Enemy")
             {
-                targets.Remove(col.gameObject);
+                //Target = null;
+                if (targets.Count > 0)
+                {
+                    targets.Remove(col.gameObject);
+                }
+                //Debug.Log("Target is now null");
+                //otherwise target nothing
             }
-            //Debug.Log("Target is now null");
-            //otherwise target nothing
         }
     }
 
