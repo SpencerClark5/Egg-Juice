@@ -230,9 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1d85838357ef140a254eb7347fe4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 300
+  HP: 5
   DMG: 5
   astarAI: {fileID: 1827747518284336903}
+  atkSpeed: 0.25
 --- !u!50 &2353718663556939929
 Rigidbody2D:
   serializedVersion: 4

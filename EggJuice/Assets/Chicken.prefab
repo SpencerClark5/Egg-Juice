@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 4813753678331341673}
   - component: {fileID: 5447142172022135702}
   - component: {fileID: 6823912078758523119}
+  - component: {fileID: 8765628312522462365}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Chicken
@@ -308,6 +309,9 @@ MonoBehaviour:
   seeker: {fileID: 4813753678331341673}
   speed: 2
   EnemyOrChicken: 0
+  targetChicken: 0
+  targetEgg: 0
+  decoys: []
 --- !u!114 &6823912078758523119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +326,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Chicken: {fileID: 4813753678331341664}
   EGG: {fileID: 7955757708087373628, guid: e5a18d6cabaea6b40a1e20434b945720, type: 3}
+--- !u!114 &8765628312522462365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813753678331341664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9795a83c510f6364a9fc7083c0885b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
 --- !u!1 &4813753678586160786
 GameObject:
   m_ObjectHideFlags: 0

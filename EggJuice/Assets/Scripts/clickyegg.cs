@@ -89,10 +89,10 @@ public class clickyegg : MonoBehaviour
             GameManager GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             //increases currecny by 1
             GM.IncrementCurrency(1);
+            testing.removeEgg(this.gameObject);
         }
-        testing.removeEgg(this.gameObject);
     }
-   
+    
     // Update is called once per frame
     void Update()
     {
@@ -103,7 +103,7 @@ public class clickyegg : MonoBehaviour
         yield return new WaitForSecondsRealtime(Wait);
         Debug.Log("spawning..");
         GameObject EggObject = Instantiate(EGG, Chicken.transform.position, Chicken.transform.rotation);
-       
+        testing.addEgg(EggObject);
     }
 
 }

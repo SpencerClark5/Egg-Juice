@@ -211,8 +211,10 @@ public class Testing : MonoBehaviour
     
     public void addEgg(GameObject egg)
     {
-        decoys.Add(egg);
-        numDecoys++;
+        eggs.Add(egg);
+        eggsAndChickens.Add(egg);
+        numEggs++;
+        numEggsChickens++;
     }
 
     public int getNumDecoys()
