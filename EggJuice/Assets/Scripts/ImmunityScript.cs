@@ -9,12 +9,12 @@ public class ImmunityScript : MonoBehaviour
 
     IEnumerator Immunity()
     {
-        Debug.Log("Immunity");
+      //  Debug.Log("Immunity");
         // make this immune
         immune = true;
         // play some flashing animation
         yield return new WaitForSeconds(0.1f);
-        Debug.Log("ImmunityGone");
+     //   Debug.Log("ImmunityGone");
         // make un immune
         immune = false;
         // stop playing flashing animation

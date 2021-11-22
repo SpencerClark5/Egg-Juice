@@ -99,7 +99,7 @@ public class EnemyScript : MonoBehaviour
     IEnumerator attack()
     {
         // play attack animation
-        Debug.Log("attack");
+       // Debug.Log("attack");
         canAttack = false;
         yield return new WaitForSeconds(atkSpeed);
         canAttack = true;

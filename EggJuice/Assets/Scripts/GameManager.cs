@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     // spawn rate delay
     [SerializeField] public float spawnRate;
     clickyegg Chicken;
+    [SerializeField] private GameObject NewChicken;
 
 
     //round 1 enemies, 3 enemies
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private List<GameObject> SpawnPoints;
     private List<GameObject> RoundOne = new List<GameObject>();
     private List<GameObject> RoundTwo = new List<GameObject>();
+    private List<GameObject> RoundThree = new List<GameObject>();
+    private List<GameObject> RoundFour = new List<GameObject>();
     public int Round;
     int EnemyCount;
     int ChickenCount;
@@ -87,15 +90,21 @@ public class GameManager : MonoBehaviour {
         //make round 1 array from enemies in the array
         //add the enemies in the array that I want to spawn round one
         RoundOne.Add(Enemies[0]);
-      
         RoundOne.Add(Enemies[0]);
-       
         RoundOne.Add(Enemies[0]);
 
+        //Round 2
         RoundTwo.Add(Enemies[0]);
         RoundTwo.Add(Enemies[0]);
         RoundTwo.Add(Enemies[1]);
         RoundTwo.Add(Enemies[1]);
+
+
+
+
+
+
+
 
     }
                                                         
@@ -187,6 +196,8 @@ public List<GameObject> getRoundEnemies(int round)
 
     private void HandleRound()
     {
+        //use this to hatch eggs
+
         Round++;
         //starts the counter for spawning enemies
         StartCoroutine(WaitForSpawn(spawnRate));
@@ -198,24 +209,51 @@ public List<GameObject> getRoundEnemies(int round)
 
         
 
-
+        //this goes through all of the chickens and sets a random time for them to lay an egg
         for(int i=0; i < chicknsForEvent.Length; i++)
         {
+            //gets each specific chicken and changes the game state
             clickyegg Script = chicknsForEvent[i].GetComponent<clickyegg>();
             Script.GameStateChange(GameState.Round.ToString());
         }
 
 
-
+        //this goes through all of the eggs
         for (int i = 0; i < eggsForEvent.Length; i++)
         {
+            //gets each specific egg and changes the game state
             clickyegg Script = eggsForEvent[i].GetComponent<clickyegg>();
             Script.GameStateChange(GameState.Round.ToString());
         }
-        //determine a random time when it will spawn in the round between 0 and enemies*spawn rate
+
+
+        //this goes thru all of the eggs
+        for (int i = 0; i < eggsForEvent.Length; i++)
+        {
+            //gets each specific egg
+            EggHatching Egg = eggsForEvent[i].GetComponent<EggHatching>();
+            Debug.Log(Egg.ToSpawn);
+            //if the egg is ready to spawn
+            if (Egg.ToSpawn == Round)
+            {
+                //spawn chicken at that spot
+                Instantiate(NewChicken, Egg.transform.position, Egg.transform.rotation);
+                //delete the egg
+                Destroy(Egg.gameObject);
+
+               
+            }
+            
+
+            //gets the round for each egg 
+            
+        }
 
 
 
+        //get the hatching rounds from the script
+        //compare them to when they need to be spawned
+        //spawn them when round = spawnround
 
 
 
