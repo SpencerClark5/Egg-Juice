@@ -105,6 +105,7 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                         else
                         {
                             // not occupied
+
                             testing.setTilesToOccupied();
                             Destroy(draggingDragObject);
                             Instantiate(tower, center, Quaternion.identity);

@@ -21,7 +21,7 @@ public class TowerProjectile : MonoBehaviour
        // Debug.Log("collidedwithsomething");
         if (col.gameObject.tag == "Enemy")
         {
-         EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();
+            EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();
             //grabs the enemy object inside of the enemyScript
             enemy.getStats().Damage(ProjectileDamage);
             

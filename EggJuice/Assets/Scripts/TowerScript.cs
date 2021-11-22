@@ -57,7 +57,7 @@ public class TowerScript : MonoBehaviour
     void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
-        MyTower = new TowerStats(Cost, Health, DMG, FireRate,ProjectileSpeed);
+        MyTower = new TowerStats(Cost, Health, DMG, FireRate, ProjectileSpeed);
         //   StartCoroutine(Wait());
         // TowerProjectile TP = Projectile.GetComponent<TowerProjectile>();
         //TowerStats Fence = new TowerStats(2, 100, 10);
@@ -81,7 +81,28 @@ public class TowerScript : MonoBehaviour
                 {
                     TryAttack(targets[0]);
                 }
-        } }
+            }
+        }
+        else if (this.gameObject.name == "ElectricFence")
+        {
+            if (col.gameObject.tag == "Enemy")
+            {
+                targets.Add(col.gameObject);
+                if (targets.Count > 0)
+                {
+                    ZappyZap();
+                }
+            }
+        }
+        else if (this.gameObject.name == "Incubator")
+        {
+            if (col.gameObject.tag == "Egg")
+            {
+                // change eggs spawn rate
+                col.gameObject.GetComponent<clickyegg>();
+                Debug.Log("egg entered range");
+            }
+        }
     }
 
     public void OnTriggerExit2D(Collider2D col)
@@ -100,6 +121,16 @@ public class TowerScript : MonoBehaviour
                 //otherwise target nothing
             }
         }
+        else if (this.gameObject.name == "ElectricFence")
+        {
+            if (col.gameObject.tag == "Enemy")
+            {
+                if (targets.Count > 0)
+                {
+                    targets.Remove(col.gameObject);
+                }
+            }
+        }
     }
 
     public GameObject Projectile;
@@ -114,13 +145,14 @@ public class TowerScript : MonoBehaviour
     public void TryAttack(GameObject GO)
     {
         StartCoroutine(WaitForAttack((float)MyTower.GetFR()));
-        
+
 
         Rigidbody2D ProjectileRB;
         Vector3 TargetMoveDirection;
         IEnumerator WaitForAttack(float Speed)
         {
-            while (targets.Count > 0) {
+            while (targets.Count > 0)
+            {
 
                 //spawns a projectile at the center of the tower
                 GameObject proj = Instantiate(Projectile, Ranged_Tower.position, Ranged_Tower.rotation);
@@ -135,17 +167,29 @@ public class TowerScript : MonoBehaviour
                 //gives the target a new velocity in that direction
                 ProjectileRB.velocity = new Vector3(TargetMoveDirection.x, TargetMoveDirection.y);
                 yield return new WaitForSecondsRealtime(Speed);
-
             }
-
         }
-        // Update is called once per frame
-        void Update()
+    }
+
+    public void ZappyZap()
+    {
+        StartCoroutine(WaitForZap((float)MyTower.GetFR()));
+    }
+    IEnumerator WaitForZap(float Speed)
+    {
+        for (int i = 0; i < targets.Count; i++)
         {
+            EnemyScript enemy = targets[i].GetComponent<EnemyScript>();
+            //grabs the enemy object inside of the enemyScript
+            enemy.getStats().Damage(DMG);
 
-
-
-
+            //if the enemy dies
+            if (enemy.getStats().getHealth() == 0)
+            {
+                //can call a death animation per enemy
+                Destroy(targets[i].gameObject);
+            }
         }
-    } 
+        yield return new WaitForSecondsRealtime(Speed);
+    }
 }
