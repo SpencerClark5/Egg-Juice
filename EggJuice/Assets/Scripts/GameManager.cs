@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private List<GameObject> Enemies;
     [SerializeField] private List<GameObject> SpawnPoints;
     private List<GameObject> RoundOne = new List<GameObject>();
+    private List<GameObject> RoundTwo = new List<GameObject>();
     public int Round;
     int EnemyCount;
     int ChickenCount;
@@ -41,9 +42,6 @@ public class GameManager : MonoBehaviour {
 
     public void RemoveCurrency(int cost)
     {
-
-
-
         currency -= cost;
         GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
     }
@@ -62,6 +60,7 @@ public class GameManager : MonoBehaviour {
             HandleRound();
                 break;
             case GameState.Win:
+                handleWin();
                 break;
             case GameState.Lose:
                 handleLose();
@@ -92,9 +91,11 @@ public class GameManager : MonoBehaviour {
         RoundOne.Add(Enemies[0]);
        
         RoundOne.Add(Enemies[0]);
-    
 
-
+        RoundTwo.Add(Enemies[0]);
+        RoundTwo.Add(Enemies[0]);
+        RoundTwo.Add(Enemies[1]);
+        RoundTwo.Add(Enemies[1]);
 
     }
                                                         
@@ -155,7 +156,7 @@ public class GameManager : MonoBehaviour {
         //dont inlude this part for endless mode
 
 
-       // enemyArray.RemoveAt(EnemyToSpawn);
+        enemyArray.RemoveAt(EnemyToSpawn);
         //remove enemy from the list
         
     }
@@ -232,6 +233,7 @@ public List<GameObject> getRoundEnemies(int round)
             Spawn(getRoundEnemies(Round));
             yield return new WaitForSecondsRealtime(Wait);
         }
+       
     }
 
     private void handleWin()

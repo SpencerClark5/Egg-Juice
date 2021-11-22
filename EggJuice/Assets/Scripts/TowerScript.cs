@@ -7,17 +7,17 @@ public class TowerScript : MonoBehaviour
     [SerializeField] private int Cost;
     [SerializeField] private int Health;
     [SerializeField] private int DMG;
-    [SerializeField] private int FireRate;
-    [SerializeField] private int ProjectileSpeed;
+    [SerializeField] private float FireRate;
+    [SerializeField] private float ProjectileSpeed;
     private class TowerStats
     {
         int TowerHealth;
         int TowerDamage;
         int TowerCost;
-        double fireRate; //in seconds
-        int ProjectileSpeed;
+        float fireRate; //in seconds
+        float ProjectileSpeed;
 
-        public TowerStats(int cost, int health, int dmg, double FR, int PS)
+        public TowerStats(int cost, int health, int dmg, float FR, float PS)
         {
             this.TowerHealth = health;
             this.TowerCost = cost;
@@ -34,11 +34,11 @@ public class TowerScript : MonoBehaviour
         {
             return TowerDamage;
         }
-        public int GetPS()
+        public float GetPS()
         {
             return ProjectileSpeed;
         }
-        public double GetFR()
+        public float GetFR()
         {
             return fireRate;
         }
