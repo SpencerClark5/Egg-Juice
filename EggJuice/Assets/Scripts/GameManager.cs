@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public float spawnRate;
     clickyegg Chicken;
     [SerializeField] private GameObject NewChicken;
-
+    Testing testingscript;
+    GameObject objectToDisappear;
 
     //round 1 enemies, 3 enemies
     // public List<GameObject> Enemies = new List<GameObject>();
@@ -79,8 +80,15 @@ public class GameManager : MonoBehaviour {
 
        OnGameStateChanged?.Invoke(newState);
     }
-   
 
+    public enum GameState
+    {
+        PreRound,
+        Round,
+        Win,
+        Lose
+
+    }
 
     private void PrepareEnemys()
     {
@@ -121,9 +129,10 @@ public class GameManager : MonoBehaviour {
         // Chicken = GameObject.
         ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
         EnemyScript enemy = GameObject.FindWithTag("GameManager").GetComponent<EnemyScript>();
-        
+        testingscript = GameObject.Find("Testing").GetComponent<Testing>();
         GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
-        UpdateGameState(GameState.Round);
+        // UpdateGameState(GameState.Round);
+        objectToDisappear = GameObject.Find("PlayButton");
     }
 
     // Update is called once per frame
@@ -175,24 +184,23 @@ private void HandlePreRound(){
  //have a play button
 
 }
-    
-public List<GameObject> getRoundEnemies(int round)
-    {
-       
-        return RoundOne;
-        /*
+
+    public List<GameObject> getRoundEnemies(int round) {
+
         if (round == 1)
         {
             return RoundOne;
         }
-        */
-        /*
-        if(round == 2)
+        else if (round == 2)
         {
             return RoundTwo;
         }
-        */
-    }
+        else
+        {
+            return new List<GameObject>();
+        }
+    } 
+    
 
     private void HandleRound()
     {
@@ -248,6 +256,19 @@ public List<GameObject> getRoundEnemies(int round)
             //gets the round for each egg 
             
         }
+        //while the round is going on
+
+
+
+        //find a way to make this not always true
+
+
+        StartCoroutine(WaitingForRound());
+
+
+        //check num of chickens and num of enemies
+        //when either hit 0, change game state
+
 
 
 
@@ -261,6 +282,45 @@ public List<GameObject> getRoundEnemies(int round)
 
 
     }
+
+    private int GetCurrentEnemiesOnScreen()
+    {
+        int count = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        return count;
+    }
+
+
+
+    IEnumerator WaitingForRound()
+    {
+
+        while (State == GameManager.GameState.Round)
+        {
+            //if all the enemies are dead
+            if (GetCurrentEnemiesOnScreen() == 0 && getRoundEnemies(Round).Count == 0)
+            {
+
+                //player wins the round, switch game state to preround
+                UpdateGameState(GameState.PreRound);
+                Debug.Log("ROUND ENDED");
+                objectToDisappear.SetActive(true);
+                //make the button visable
+            }
+            //the chickens are dead
+            if (testingscript.chickens.Count == 0)
+            {
+                //player loses, set game state to lose
+                UpdateGameState(GameState.Lose);
+                Debug.Log("LOSE");
+
+            }
+            //if player beats all rounds and has chickens left
+            //player wins, set game state to win
+            yield return new WaitForSecondsRealtime(.5f);
+        }
+        
+    }
+
 
     IEnumerator WaitForSpawn(float Wait)
     {
@@ -302,13 +362,6 @@ private void handleLose()
     {
         return currency;
     }
-    public enum GameState
-    {
-        PreRound,
-        Round,
-        Win,
-        Lose
-       
-    }
+    
 
 }
