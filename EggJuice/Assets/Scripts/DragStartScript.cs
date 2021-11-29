@@ -4,16 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitHandler
+public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitHandler, IPointerUpHandler
 {
     [SerializeField] private int width;
     [SerializeField] private int height;
-    [SerializeField] private GameObject tower;
+    private GameObject tower;
+    [SerializeField] private GameObject verticalTower;
+    [SerializeField] private GameObject horizontalTower;
+
     [SerializeField] private Image visual;
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private RectTransform square;
     private Testing testing;
-    [SerializeField] private GameObject dragObject;
+
+    [SerializeField] private GameObject verticalDragObject;
+    [SerializeField] private GameObject horizontalDragObject;
+    private GameObject dragObject;
+
     [SerializeField] private int cost;
     [SerializeField] private GameObject darkTransparentSquare;
     // holds the world position of the top left tile
@@ -32,10 +40,14 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     private float cellSize = -5;
     private Vector3 center;
     private bool canAfford = false;
+    private bool mouseUp = false;
+    private bool vertical = false;
     // Start is called before the first frame update
     void Start()
     {
         testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
+        dragObject = horizontalDragObject;
+        tower = horizontalTower;
     }
     // Update is called once per frame
     void Update()
@@ -62,24 +74,8 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
             {
                 if (mouseExited)
                 {
-                    mouseExited = false;
-                    dragging = true;
-                    Debug.Log("exited");
-                    //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
-                    //  Input.mousePosition.y),
-                    //Quaternion.identity);
-
-                    //testing.remakeListArray(width, height);
-
-                    //dragVisual.transform.SetParent(canvas.transform);
-
-                    draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
-
-                    //draggingDragObject.transform.SetParent(canvas.transform);
-                    draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
-                    Debug.Log(draggingDragObject.transform.position);
-                    testing.setThings(width * height, this);
+                    //mouseExited = false;
+                    
                 }
                 if (dragging)
                 {
@@ -92,26 +88,9 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
                     }
                     if (Input.GetMouseButtonUp(0))
                     {
-                        clickStarted = false;
-                        mouseExited = false;
-                        dragging = false;
-                        // check if any tiles in tile array are occupied
-                        if (testing.checkForOccupied())
-                        {
-                            // occupied
-                            // if they are don't instatiate the tower and just set it up to be dragged again
-                            Destroy(draggingDragObject);
-                        }
-                        else
-                        {
-                            // not occupied
+                        
 
-                            testing.setTilesToOccupied();
-                            Destroy(draggingDragObject);
-                            Instantiate(tower, center, Quaternion.identity);
-                            gameManager.RemoveCurrency(cost);
-                        }
-
+                        
                         //Destroy(dragVisual.gameObject);
                         // make rad and greed squares no longer visible and spawn tower
                     }
@@ -172,29 +151,105 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
     {
         startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         clickStarted = true;
+        mouseUp = false;
     }
-
-    /*public void OnPointerUp(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }*/
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("OnPointerExit called");
         if (clickStarted)
         {
-            if (!dragging)
+            if (mouseUp == false)
             {
+                if (!dragging)
+                {
 
-                exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-               // if (Mathf.Abs(exitPos.magnitude - startPos.magnitude) > 1)
-                //{
+                    exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    // if (Mathf.Abs(exitPos.magnitude - startPos.magnitude) > 1)
+                    //{
                     mouseExited = true;
-                //}
+                    //}
+                    dragging = true;
+                    Debug.Log("exited");
+                    //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
+                    //  Input.mousePosition.y),
+                    //Quaternion.identity);
 
+                    //testing.remakeListArray(width, height);
+
+                    //dragVisual.transform.SetParent(canvas.transform);
+
+                    draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
+
+                    //draggingDragObject.transform.SetParent(canvas.transform);
+                    draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
+                    Debug.Log(draggingDragObject.transform.position);
+                    testing.setThings(width * height, this);
+
+                }
             }
         }
     }
 
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        // rotate
+        if (!mouseExited)
+        {
+            mouseUp = true;
+            Debug.Log("rotate, button up clicked");
+            if (gameObject.name == "DraggableObject (2)")
+            {
+                rotate();
+            }
+        }
+        else
+        {
+            clickStarted = false;
+            mouseExited = false;
+            dragging = false;
+            // check if any tiles in tile array are occupied
+            if (testing.checkForOccupied())
+            {
+                // occupied
+                // if they are don't instatiate the tower and just set it up to be dragged again
+                Destroy(draggingDragObject);
+            }
+            else
+            {
+                // not occupied
+
+                testing.setTilesToOccupied();
+                Destroy(draggingDragObject);
+                Instantiate(tower, center, Quaternion.identity);
+                gameManager.RemoveCurrency(cost);
+            }
+        }
+    }
+
+    private void rotate()
+    {
+        if (vertical)
+        {
+            vertical = false;
+            dragObject = horizontalDragObject;
+            tower = horizontalTower;
+            width = 4;
+            height = 1;
+            //square.transform.rotation.Set(0, 0, -34.83f, 0);
+            //square.rotation.Set(0, 0, -34.83f, 1);
+        }
+        else
+        {
+            vertical = true;
+            dragObject = verticalDragObject;
+            tower = verticalTower;
+            width = 1;
+            height = 4;
+            //square.transform.rotation.Set(0, 0, 51.72f, 0);
+            //square.rotation.Set(0, 0, 51.72f, 1);
+        }
+        square.Rotate(new Vector3(0, 0, 90));
+    }
 }

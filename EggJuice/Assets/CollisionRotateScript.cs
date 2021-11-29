@@ -27,12 +27,14 @@ public class CollisionRotateScript : MonoBehaviour
         {
             rotated = false;
             cornerBox.offset.Set(-0.75f, 0.25f);
-           // bigbox
+            // bigbox
+            bigbox.size.Set(2,1);
         }
         else
         {
             rotated = true;
             cornerBox.offset.Set(-0.25f, 0.75f);
+            bigbox.size.Set(1, 2);
         }
     }
     

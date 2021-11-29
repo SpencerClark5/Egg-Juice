@@ -8,6 +8,7 @@ public class RotateClickScript : MonoBehaviour
 {
     [SerializeField] private Button btn = null;
     public GameObject collisionObject;
+    
 
     // Start is called before the first frame update
 
@@ -18,10 +19,12 @@ public class RotateClickScript : MonoBehaviour
 
     private void ButtonClick()
     {
+        Debug.Log("collision object is null because it didnt say clicked after this");
         if (collisionObject != null)
         {
             Debug.Log("clicked!");
             // call collisionObjects rotate function
+            collisionObject.GetComponent<CollisionRotateScript>().rotate();
         }
     }
 

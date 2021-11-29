@@ -99,8 +99,11 @@ public class TowerScript : MonoBehaviour
             if (col.gameObject.tag == "Egg")
             {
                 // change eggs spawn rate
-                col.gameObject.GetComponent<clickyegg>();
-                Debug.Log("egg entered range");
+                if (col.gameObject.GetComponent<EggHatching>().ToSpawn >= 1)
+                {
+                    col.gameObject.GetComponent<EggHatching>().ToSpawn--;
+                    Debug.Log("egg entered range " + col.gameObject.GetComponent<EggHatching>().ToSpawn);
+                }
             }
         }
     }

@@ -24,7 +24,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.5, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &2072335416276674779
 MonoBehaviour:
@@ -39,8 +39,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
-  bigbox: {fileID: 5554227329784028604}
-  cornerBox: {fileID: 0}
+  bigbox: {fileID: 0}
+  cornerBoxGameObject: {fileID: 0}
 --- !u!61 &5974565629932759512
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54,7 +54,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: 0.75}
+  m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -178,16 +178,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 68.89
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4866872285303894941, guid: c97eee3f23f60aa42b2c5a14eca295a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c97eee3f23f60aa42b2c5a14eca295a6, type: 3}
 --- !u!1 &3583257910790800596 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4549837180649548533, guid: c97eee3f23f60aa42b2c5a14eca295a6, type: 3}
-  m_PrefabInstance: {fileID: 1053295696430525985}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &5554227329784028604 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 4866872285303894941, guid: c97eee3f23f60aa42b2c5a14eca295a6, type: 3}
   m_PrefabInstance: {fileID: 1053295696430525985}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5068829623842561404 stripped
