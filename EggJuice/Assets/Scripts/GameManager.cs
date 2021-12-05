@@ -25,10 +25,14 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> RoundTwo = new List<GameObject>();
     private List<GameObject> RoundThree = new List<GameObject>();
     private List<GameObject> RoundFour = new List<GameObject>();
+    private List<GameObject> RoundFive = new List<GameObject>();
+    private List<GameObject> RoundSix = new List<GameObject>();
+    private List<GameObject> RoundSeven = new List<GameObject>();
+    private List<GameObject> RoundEight= new List<GameObject>();
+
     public int Round;
-    int EnemyCount;
     int ChickenCount;
-    //when we add eggs hatching this will have to be updated
+    
 
     void Awake()
     {
@@ -97,15 +101,53 @@ public class GameManager : MonoBehaviour {
 
         //make round 1 array from enemies in the array
         //add the enemies in the array that I want to spawn round one
-        RoundOne.Add(Enemies[0]);
-        RoundOne.Add(Enemies[0]);
-        RoundOne.Add(Enemies[0]);
+
+        //Round 1
+        addPlate(RoundOne, 3);
+
 
         //Round 2
-        RoundTwo.Add(Enemies[0]);
-        RoundTwo.Add(Enemies[0]);
-        RoundTwo.Add(Enemies[1]);
-        RoundTwo.Add(Enemies[1]);
+        addPlate(RoundTwo, 2);
+        addBook(RoundTwo, 2);
+
+
+        //Round 3
+        addBook(RoundThree, 2);
+        addRacoon(RoundThree, 2);
+        addPlate(RoundThree, 1);
+
+        //Round 4
+        addPlate(RoundFour, 2);
+        addRacoon(RoundFour, 2);
+        addBook(RoundFour, 3);
+        addCat(RoundFour, 3);
+
+        //Round 5
+        addPlate(RoundFive, 4);
+        addRacoon(RoundFive, 3);
+        addBook(RoundFive, 1);
+        addCat(RoundFive, 1);
+
+        //Round 6
+
+        addRacoon(RoundSix, 4);
+        addBook(RoundSix, 4);
+        addCat(RoundSix, 3);
+
+        //Round 7
+
+        addPlate(RoundSeven, 6);
+        addRacoon(RoundSeven, 4);
+        addBook(RoundSeven, 6);
+        addCat(RoundSeven, 5);
+
+
+        //Round 8
+
+        addPlate(RoundEight, 12);
+        addRacoon(RoundEight, 5);
+        addBook(RoundEight, 6);
+        addCat(RoundEight, 4);
 
 
 
@@ -115,7 +157,42 @@ public class GameManager : MonoBehaviour {
 
 
     }
-                                                        
+                 
+    public void addPlate(List<GameObject> array,int amount)
+    {
+        for(int i = 0; i <amount; i++)
+        {
+            array.Add(Enemies[0]);
+        }
+
+    }
+
+    public void addBook(List<GameObject> array, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            array.Add(Enemies[1]);
+        }
+
+    }
+
+    public void addCat(List<GameObject> array, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            array.Add(Enemies[3]);
+        }
+
+    }
+
+    public void addRacoon(List<GameObject> array, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            array.Add(Enemies[2]);
+        }
+
+    }
 
 
     // Start is called before the first frame update
@@ -130,7 +207,9 @@ public class GameManager : MonoBehaviour {
         ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
         EnemyScript enemy = GameObject.FindWithTag("GameManager").GetComponent<EnemyScript>();
         testingscript = GameObject.Find("Testing").GetComponent<Testing>();
+
         GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
+        GameObject.Find("RoundText").GetComponent<UnityEngine.UI.Text>().text = "Round " + Round;
         // UpdateGameState(GameState.Round);
         objectToDisappear = GameObject.Find("PlayButton");
     }
@@ -138,15 +217,7 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /*
-        ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
-      //  Debug.Log(ChickenCount);
-        if (ChickenCount == 0)
-        {
-            UpdateGameState(GameState.Lose);
-         //   Debug.Log("updated!");
-        }
-        */
+        
     }
 
  private void Spawn(List<GameObject> enemyArray)
@@ -195,6 +266,30 @@ private void HandlePreRound(){
         {
             return RoundTwo;
         }
+        else if (round == 3)
+        {
+            return RoundThree;
+        }
+        else if (round == 4)
+        {
+            return RoundFour;
+        }
+        else if (round == 5)
+        {
+            return RoundFive;
+        }
+        else if (round == 6)
+        {
+            return RoundSix;
+        }
+        else if (round == 7)
+        {
+            return RoundSeven;
+        }
+        else if (round == 8)
+        {
+            return RoundEight;
+        }
         else
         {
             return new List<GameObject>();
@@ -207,6 +302,7 @@ private void HandlePreRound(){
         //use this to hatch eggs
 
         Round++;
+        GameObject.Find("RoundText").GetComponent<UnityEngine.UI.Text>().text = "Round " + Round;
         //starts the counter for spawning enemies
         StartCoroutine(WaitForSpawn(spawnRate));
 
