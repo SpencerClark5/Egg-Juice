@@ -18,13 +18,13 @@ public class TowerProjectile : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         //if enemy collides with tower
-       // Debug.Log("collidedwithsomething");
+        // Debug.Log("collidedwithsomething");
         if (col.gameObject.tag == "Enemy")
         {
             EnemyScript enemy = col.gameObject.GetComponent<EnemyScript>();
             //grabs the enemy object inside of the enemyScript
             enemy.getStats().Damage(ProjectileDamage);
-            
+
             //destroys the projectile
             Destroy(this.gameObject);
 
@@ -32,10 +32,15 @@ public class TowerProjectile : MonoBehaviour
             if (enemy.getStats().getHealth() == 0)
             {
                 //can call a death animation per enemy
+                if (col.gameObject.name == "Raccoon")
+                {
+                    // spawn egg
+                    enemy.setKilledByTower();
+                }
                 Destroy(col.gameObject);
             }
 
-          
+
         }
         if (col.gameObject.tag == "Boundary")
         {
@@ -44,11 +49,11 @@ public class TowerProjectile : MonoBehaviour
     }
 
     private Rigidbody2D RB;
-  //  private Collider COL;
+    //  private Collider COL;
     // Start is called before the first frame update
     void Start()
     {
-        
+
         RB = GetComponent<Rigidbody2D>();
         //ignores the collision on the projectile layers (6)
         Physics2D.IgnoreLayerCollision(6, 6);
@@ -60,6 +65,6 @@ public class TowerProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

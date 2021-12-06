@@ -63,14 +63,17 @@ public class TowerScript : MonoBehaviour
         //TowerStats Fence = new TowerStats(2, 100, 10);
     }
 
+    public void OnMouseDown()
+    {
+        Debug.Log("tower recieved click");
+    }
 
     GameObject Target;
     public void OnTriggerEnter2D(Collider2D col)
     {
+        
         if (this.gameObject.name == "Ranged_Tower")
         {
-
-
             //if an enemy comes into the range
             if (col.gameObject.tag == "Enemy")
             {

@@ -163,30 +163,31 @@ public class DragStartScript : MonoBehaviour, IPointerDownHandler, IPointerExitH
             {
                 if (!dragging)
                 {
+                    if (canAfford)
+                    {
+                        exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        // if (Mathf.Abs(exitPos.magnitude - startPos.magnitude) > 1)
+                        //{
+                        mouseExited = true;
+                        //}
+                        dragging = true;
+                        Debug.Log("exited");
+                        //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
+                        //  Input.mousePosition.y),
+                        //Quaternion.identity);
 
-                    exitPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    // if (Mathf.Abs(exitPos.magnitude - startPos.magnitude) > 1)
-                    //{
-                    mouseExited = true;
-                    //}
-                    dragging = true;
-                    Debug.Log("exited");
-                    //dragVisual = Instantiate(visual, new Vector3(Input.mousePosition.x,
-                    //  Input.mousePosition.y),
-                    //Quaternion.identity);
+                        //testing.remakeListArray(width, height);
 
-                    //testing.remakeListArray(width, height);
+                        //dragVisual.transform.SetParent(canvas.transform);
 
-                    //dragVisual.transform.SetParent(canvas.transform);
+                        draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                            Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
 
-                    draggingDragObject = Instantiate(dragObject, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), Quaternion.identity);
-
-                    //draggingDragObject.transform.SetParent(canvas.transform);
-                    draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
-                    Debug.Log(draggingDragObject.transform.position);
-                    testing.setThings(width * height, this);
-
+                        //draggingDragObject.transform.SetParent(canvas.transform);
+                        draggingDragObject.GetComponent<BoxCollider2D>().enabled = true;
+                        Debug.Log(draggingDragObject.transform.position);
+                        testing.setThings(width * height, this);
+                    }
                 }
             }
         }

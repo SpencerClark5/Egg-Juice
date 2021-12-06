@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4813753677567098779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4813753678331341666}
   m_RootOrder: 1
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1352084029
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3888248066327895594, guid: 05443d4a3767f8e488e6ad7c62208a22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 5447142172022135702}
   - component: {fileID: 6823912078758523119}
   - component: {fileID: 8765628312522462365}
+  - component: {fileID: 6427037624812809997}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Chicken
@@ -181,7 +182,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1352084029
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -339,6 +340,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
+--- !u!114 &6427037624812809997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813753678331341664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36e254ff987a2545a1be9872d37bc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetObject: {fileID: 4813753677567098779}
+  rb: {fileID: 4813753678331341676}
 --- !u!1 &4813753678586160786
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +425,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1352084029
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 5409268911985999531, guid: f03a8eac2d830e2409b46808ef2f4c25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

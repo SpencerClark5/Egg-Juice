@@ -36,6 +36,7 @@ public class AstarAI : MonoBehaviour
     private float distance;
     private float shortestDistance;
     private GameObject closestChicken;
+    private bool runOffMap = false;
 
     public void Start()
     {
@@ -56,52 +57,87 @@ public class AstarAI : MonoBehaviour
         // set new destination
         while (true)
         {
-            if (EnemyOrChicken)
+            if (!runOffMap)
             {
-                if (targetEgg && targetChicken)
+                Debug.Log("RunOffMap: " + runOffMap);
+                if (EnemyOrChicken)
                 {
-                    // finds decoy
-                    if (numDecoys > 0 && decoys[0].transform != null)
+                    if (targetEgg && targetChicken)
                     {
-                        calculatePath(numDecoys, decoys);
+                        // finds decoy
+                        if (numDecoys > 0 && decoys[0].transform != null)
+                        {
+                            calculatePath(numDecoys, decoys);
+                        }
+                        // find new chicken
+                        else if (testing.getEggsAndChickens() > 0 && testing.eggsAndChickens[0].transform != null)
+                        {
+                            calculatePath(testing.getEggsAndChickens(), testing.eggsAndChickens);
+                        }
+                        yield return new WaitForSeconds(0.3f);
                     }
-                    // find new chicken
-                    else if (testing.getEggsAndChickens() > 0 && testing.eggsAndChickens[0].transform != null)
+                    else if (targetChicken)
                     {
-                        calculatePath(testing.getEggsAndChickens(), testing.eggsAndChickens);
+                        // finds decoy
+                        if (numDecoys > 0 && decoys[0].transform != null)
+                        {
+                            calculatePath(numDecoys, decoys);
+                        }
+                        // find new chicken
+                        else if (testing.getNumChickens() > 0 && testing.chickens[0].transform != null)
+                        {
+                            calculatePath(testing.getNumChickens(), testing.chickens);
+                        }
+                        yield return new WaitForSeconds(0.3f);
                     }
+                    else if (targetEgg)
+                    {
+                        if (testing.getNumEggs() > 0 && testing.eggs[0].transform != null)
+                        {
+                            calculatePath(testing.getNumEggs(), testing.eggs);
+                        }
+                        yield return new WaitForSeconds(0.3f);
+                    }
+                    
                     yield return new WaitForSeconds(0.3f);
+
                 }
-                else if (targetEgg)
+                else
                 {
-                    if (testing.getNumEggs() > 0 && testing.eggs[0].transform != null)
-                    {
-                        calculatePath(testing.getNumEggs(), testing.eggs);
-                    }
-                    yield return new WaitForSeconds(0.3f);
+                    this.seeker.StartPath(transform.position, new Vector3(Random.Range(-8, 7), Random.Range(-5, 5)), OnPathComplete);
+
+                    yield return new WaitForSeconds(5f);
                 }
-                else if (targetChicken)
-                {
-                    // finds decoy
-                    if (numDecoys > 0 && decoys[0].transform != null)
-                    {
-                        calculatePath(numDecoys, decoys);
-                    }
-                    // find new chicken
-                    else if (testing.getNumChickens() > 0 && testing.chickens[0].transform != null)
-                    {
-                        calculatePath(testing.getNumChickens(), testing.chickens);
-                    }
-                    yield return new WaitForSeconds(0.3f);
-                }
-                yield return new WaitForSeconds(0.3f);
 
             }
             else
             {
-                this.seeker.StartPath(transform.position, new Vector3(Random.Range(-8, 7), Random.Range(-5, 5)), OnPathComplete);
-
-                yield return new WaitForSeconds(5f);
+                // start path to somewhere off map
+                if (transform.position.x > 5)
+                {
+                    // go right
+                    seeker.StartPath(transform.position, new Vector3(transform.position.x + (5 - transform.position.x),
+                        transform.position.y, transform.position.z), OnPathComplete);
+                }
+                else if (transform.position.x < -5)
+                {
+                    // go left
+                    seeker.StartPath(transform.position, new Vector3(transform.position.x + (-5 + transform.position.x),
+                        transform.position.y, transform.position.z), OnPathComplete);
+                }
+                else if (transform.position.y < 0)
+                {
+                    // go down
+                    seeker.StartPath(transform.position, new Vector3(transform.position.x, transform.position.y -
+                        (-7 + transform.position.y), transform.position.z), OnPathComplete);
+                }
+                else
+                {
+                    // go up
+                    seeker.StartPath(transform.position, new Vector3(transform.position.x, transform.position.y +
+                        (7 - transform.position.y), transform.position.z), OnPathComplete);
+                }
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }
@@ -155,8 +191,18 @@ public class AstarAI : MonoBehaviour
 
         if (path == null)
         {
+
             // We have no path to follow yet, so don't do anything
             return;
+        }
+
+        if (gameObject.name == "Raccoon")
+        {
+            if (gameObject.transform.position.x < -9 || gameObject.transform.position.x > 9 ||
+                gameObject.transform.position.y < -6 || gameObject.transform.position.y > 6)
+            {
+                runOffMap = false;
+            }
         }
 
         // Check in a loop if we are close enough to the current waypoint to switch to the next one.
@@ -235,5 +281,15 @@ public class AstarAI : MonoBehaviour
     public void setDestroying(bool destroying)
     {
         this.destroying = destroying;
+    }
+
+    public void setRunOffMap(bool onOrOff)
+    {
+        runOffMap = onOrOff;
+    }
+
+    public bool getRunOffMap()
+    {
+        return runOffMap;
     }
 }

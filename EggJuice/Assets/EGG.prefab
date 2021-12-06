@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 812241045774808194}
   - component: {fileID: 6292965743235773236}
   - component: {fileID: 3950256470298275729}
-  m_Layer: 7
+  - component: {fileID: 1097991434654054493}
+  m_Layer: 8
   m_Name: EGG
   m_TagString: Egg
   m_Icon: {fileID: 0}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1352084029
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,3 +144,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawned: 0
   ToSpawn: 0
+--- !u!114 &1097991434654054493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955757708087373628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 5712821940037116028
+  updateError: 1
+  checkTime: 0.2

@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3292239329819780809, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292239329978606597, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
+      propertyPath: DMG
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292239329978606620, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3292239329978606622, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -78,6 +90,14 @@ PrefabInstance:
     - target: {fileID: 3292239330095392862, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
       propertyPath: m_Name
       value: ElectricFence Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292239330095392862, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292239330809806370, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f3d62c59723f46ba6ce185942c590, type: 3}

@@ -6,7 +6,7 @@ public class ImmunityScript : MonoBehaviour
 {
     [SerializeField] private int health;
     private bool immune = false;
-
+    
     IEnumerator Immunity()
     {
       //  Debug.Log("Immunity");

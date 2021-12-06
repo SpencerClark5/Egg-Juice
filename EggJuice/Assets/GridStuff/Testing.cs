@@ -200,7 +200,9 @@ public class Testing : MonoBehaviour
     public void addChicken(GameObject chicken)
     {
         chickens.Add(chicken);
+        eggsAndChickens.Add(chicken);
         numChickens++;
+        numEggsChickens++;
     }
 
     public void addDecoy(GameObject decoy)
@@ -229,7 +231,7 @@ public class Testing : MonoBehaviour
     
     public int getEggsAndChickens()
     {
-        return numEggs;
+        return numEggs + numChickens;
     }
 
     public void removeDecoy(GameObject decoy)

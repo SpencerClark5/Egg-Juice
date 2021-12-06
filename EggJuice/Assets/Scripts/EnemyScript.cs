@@ -7,8 +7,11 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] int HP;
     [SerializeField] int DMG;
     [SerializeField] AstarAI astarAI;
+    [SerializeField] GameObject EGG;
     private bool canAttack = true;
     [SerializeField] private float atkSpeed;
+    private EggHatching eggHatchingScript;
+    private bool killedByTower = false;
     // true if moving to the right, false if moving to the left
 
     public class EnemyStats
@@ -75,13 +78,30 @@ public class EnemyScript : MonoBehaviour
             }
             if (col.gameObject.tag == "Egg")
             {
-                if (col.gameObject.GetComponent<ImmunityScript>().takeDamage(DMG))
+                if (this.gameObject.name == "Raccoon")
                 {
-                    col.gameObject.GetComponent<clickyegg>().setKilledByEnemy();
-                    testing.destroyEgg();
-                    testing.eggs.Remove(col.gameObject);
-                    testing.eggsAndChickens.Remove(col.gameObject);
-                    Destroy(col.gameObject);
+                    if (!astarAI.getRunOffMap())
+                    {
+                        eggHatchingScript = col.gameObject.GetComponent<EggHatching>();
+                        col.gameObject.GetComponent<clickyegg>().setKilledByEnemy();
+                        testing.destroyEgg();
+                        testing.eggs.Remove(col.gameObject);
+                        testing.eggsAndChickens.Remove(col.gameObject);
+                        Destroy(col.gameObject);
+                        // change destination to run off screen
+                        astarAI.setRunOffMap(true);
+                    }
+                }
+                else
+                {
+                    if (col.gameObject.GetComponent<ImmunityScript>().takeDamage(DMG))
+                    {
+                        col.gameObject.GetComponent<clickyegg>().setKilledByEnemy();
+                        testing.destroyEgg();
+                        testing.eggs.Remove(col.gameObject);
+                        testing.eggsAndChickens.Remove(col.gameObject);
+                        Destroy(col.gameObject);
+                    }
                 }
             }
         }
@@ -154,5 +174,41 @@ public class EnemyScript : MonoBehaviour
     {
 
 
+    }
+
+    public void OnDestroy()
+    {
+        if (killedByTower)
+        {
+            GameObject EggObject = Instantiate(EGG, gameObject.transform.position, gameObject.transform.rotation);
+            EggObject.GetComponent<EggHatching>().Spawned = eggHatchingScript.Spawned;
+            EggObject.GetComponent<EggHatching>().ToSpawn = eggHatchingScript.ToSpawn;
+            testing.addEgg(EggObject);
+        }
+    }
+
+    public void spawnEgg()
+    {
+        Debug.Log("made to spawn egg");
+        if (eggHatchingScript != null)
+        {
+            
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void setKilledByTower()
+    {
+        killedByTower = true;
+    }
+
+    public GameObject getEgg()
+    {
+        return EGG;
+    }
+
+    public EggHatching getEggHatchingScript()
+    {
+        return eggHatchingScript;
     }
 }
