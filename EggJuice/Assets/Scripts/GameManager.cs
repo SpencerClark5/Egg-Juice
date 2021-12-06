@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> RoundSeven = new List<GameObject>();
     private List<GameObject> RoundEight= new List<GameObject>();
 
-    public int Round;
+    public int Round=0;
     int ChickenCount;
     
 
@@ -104,23 +104,25 @@ public class GameManager : MonoBehaviour {
 
         //Round 1
         addPlate(RoundOne, 3);
-
+        Debug.Log("Round1!!!!");
 
         //Round 2
         addPlate(RoundTwo, 2);
         addBook(RoundTwo, 2);
-
+        Debug.Log("Round2!!!!");
 
         //Round 3
         addBook(RoundThree, 2);
         addRacoon(RoundThree, 2);
         addPlate(RoundThree, 1);
+        Debug.Log("Round3!!!!");
 
         //Round 4
         addPlate(RoundFour, 2);
         addRacoon(RoundFour, 2);
         addBook(RoundFour, 3);
         addCat(RoundFour, 3);
+        Debug.Log("Round4!!!!");
 
         //Round 5
         addPlate(RoundFive, 4);
@@ -198,6 +200,7 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("STARTED!!!!");
         PrepareEnemys();
         //have to arrays, one of enemies that we could spawn, and one that we want to spawn this round
         //  PrepareEnemys();
@@ -212,6 +215,7 @@ public class GameManager : MonoBehaviour {
         GameObject.Find("RoundText").GetComponent<UnityEngine.UI.Text>().text = "Round " + Round;
         // UpdateGameState(GameState.Round);
         objectToDisappear = GameObject.Find("PlayButton");
+        
     }
 
     // Update is called once per frame
