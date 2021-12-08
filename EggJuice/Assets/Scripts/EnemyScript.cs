@@ -6,6 +6,14 @@ public class EnemyScript : MonoBehaviour
     private Testing testing;
     [SerializeField] int HP;
     [SerializeField] int DMG;
+    [SerializeField] AstarAI astarAI;
+    [SerializeField] GameObject EGG;
+    private bool canAttack = true;
+    [SerializeField] private float atkSpeed;
+    private EggHatching eggHatchingScript;
+    private bool killedByTower = false;
+    // true if moving to the right, false if moving to the left
+
     public class EnemyStats
     {
         Vector3 speed;
@@ -29,8 +37,9 @@ public class EnemyScript : MonoBehaviour
         public void Damage(int damageAmount)
         {
             EnemyHealth -= damageAmount;
-            if (EnemyHealth <= 0) {
-                EnemyHealth=0;
+            if (EnemyHealth <= 0)
+            {
+                EnemyHealth = 0;
             }
         }
     }
@@ -38,24 +47,65 @@ public class EnemyScript : MonoBehaviour
     //damage script
     public void OnCollisionEnter2D(Collision2D col)
     {
-        //if enemy collides with tower
-        if (col.gameObject.tag == "Tower")
+        if (canAttack)
         {
-            Debug.Log("ouch");
-            //grabs the script on the tower
-            Destroy(this.gameObject);
+            if (col.gameObject.tag == "Chicken")
+            {
 
-            //TowerScript tower = col.gameObject.GetComponent<TowerScript>();
-            // Debug.Log(tower.getDamage());
-        }
-        if (col.gameObject.tag == "Chicken")
-        {
-            Debug.Log("chickenOuch");
-            testing.destroyChicken();
-            testing.chickens.Remove(col.gameObject);
-            Destroy(col.gameObject);
-        }
+                if (col.gameObject.GetComponent<ImmunityScript>().takeDamage(DMG))
+                {
+                    Debug.Log("chickenOuch");
+                    testing.destroyChicken();
+                    testing.chickens.Remove(col.gameObject);
+                    testing.eggsAndChickens.Remove(col.gameObject);
+                    Destroy(col.gameObject);
+                }
 
+            }
+            if (col.gameObject.tag == "Decoy")
+            {
+                if (col.gameObject.GetComponent<ImmunityScript>().takeDamage(DMG))
+                {
+                    Debug.Log("DecoyOuch");
+                    col.gameObject.GetComponent<DecoyScript>().setGettingDestroyed();
+                    astarAI.removeDecoy(col.gameObject);
+                    astarAI.setDestroying(true);
+                    //testing.destroyDecoy();
+                    //testing.decoys.Remove(col.gameObject);
+                    Destroy(col.gameObject);
+                }
+
+            }
+            if (col.gameObject.tag == "Egg")
+            {
+                if (this.gameObject.name == "Raccoon")
+                {
+                    if (!astarAI.getRunOffMap())
+                    {
+                        eggHatchingScript = col.gameObject.GetComponent<EggHatching>();
+                        col.gameObject.GetComponent<clickyegg>().setKilledByEnemy();
+                        testing.destroyEgg();
+                        testing.eggs.Remove(col.gameObject);
+                        testing.eggsAndChickens.Remove(col.gameObject);
+                        Destroy(col.gameObject);
+                        // change destination to run off screen
+                        astarAI.setRunOffMap(true);
+                    }
+                }
+                else
+                {
+                    if (col.gameObject.GetComponent<ImmunityScript>().takeDamage(DMG))
+                    {
+                        col.gameObject.GetComponent<clickyegg>().setKilledByEnemy();
+                        testing.destroyEgg();
+                        testing.eggs.Remove(col.gameObject);
+                        testing.eggsAndChickens.Remove(col.gameObject);
+                        Destroy(col.gameObject);
+                    }
+                }
+            }
+        }
+        StartCoroutine(attack());
         /*
         //if a bullet collides with enemy
         if (col.gameObject.tag == "Projectiles")
@@ -66,8 +116,15 @@ public class EnemyScript : MonoBehaviour
         
         }*/
     }
+    IEnumerator attack()
+    {
+        // play attack animation
+       // Debug.Log("attack");
+        canAttack = false;
+        yield return new WaitForSeconds(atkSpeed);
+        canAttack = true;
+    }
 
-  
 
     /*
         public void OnTriggerEnter2D(Collider2D col)
@@ -93,15 +150,17 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     private EnemyStats Enemy;
     private Rigidbody2D RB;
- //   private GameObject GO;
+    //   private GameObject GO;
     void Start()
     {
-  //    GO = GetComponent<GameObject>();
+        //    GO = GetComponent<GameObject>();
         RB = GetComponent<Rigidbody2D>();
-        RB.velocity = new Vector2(1, 0);
+        //RB.velocity = new Vector2(1, 0);
+
+        // get speed
         Enemy = new EnemyStats(RB.velocity, HP, DMG);
         testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
-       
+
         //get the object that this script is on and determine health from that
     }
 
@@ -114,6 +173,42 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
 
-       
+
+    }
+
+    public void OnDestroy()
+    {
+        if (killedByTower)
+        {
+            GameObject EggObject = Instantiate(EGG, gameObject.transform.position, gameObject.transform.rotation);
+            EggObject.GetComponent<EggHatching>().Spawned = eggHatchingScript.Spawned;
+            EggObject.GetComponent<EggHatching>().ToSpawn = eggHatchingScript.ToSpawn;
+            testing.addEgg(EggObject);
+        }
+    }
+
+    public void spawnEgg()
+    {
+        Debug.Log("made to spawn egg");
+        if (eggHatchingScript != null)
+        {
+            
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void setKilledByTower()
+    {
+        killedByTower = true;
+    }
+
+    public GameObject getEgg()
+    {
+        return EGG;
+    }
+
+    public EggHatching getEggHatchingScript()
+    {
+        return eggHatchingScript;
     }
 }

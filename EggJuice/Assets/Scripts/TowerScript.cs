@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class TowerScript : MonoBehaviour
 {
+    [SerializeField] private int Cost;
+    [SerializeField] private int Health;
+    [SerializeField] private int DMG;
+    [SerializeField] private float FireRate;
+    [SerializeField] private float ProjectileSpeed;
     private class TowerStats
     {
         int TowerHealth;
         int TowerDamage;
         int TowerCost;
-        double fireRate; //in seconds
-        int ProjectileSpeed;
+        float fireRate; //in seconds
+        float ProjectileSpeed;
 
-        public TowerStats(int cost, int health, int dmg, double FR, int PS)
+        public TowerStats(int cost, int health, int dmg, float FR, float PS)
         {
             this.TowerHealth = health;
             this.TowerCost = cost;
@@ -29,11 +34,11 @@ public class TowerScript : MonoBehaviour
         {
             return TowerDamage;
         }
-        public int GetPS()
+        public float GetPS()
         {
             return ProjectileSpeed;
         }
-        public double GetFR()
+        public float GetFR()
         {
             return fireRate;
         }
@@ -52,43 +57,85 @@ public class TowerScript : MonoBehaviour
     void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
-        MyTower = new TowerStats(1, 100, 1, .01, 3);
+        MyTower = new TowerStats(Cost, Health, DMG, FireRate, ProjectileSpeed);
         //   StartCoroutine(Wait());
         // TowerProjectile TP = Projectile.GetComponent<TowerProjectile>();
         //TowerStats Fence = new TowerStats(2, 100, 10);
     }
 
+    public void OnMouseDown()
+    {
+        Debug.Log("tower recieved click");
+    }
 
     GameObject Target;
     public void OnTriggerEnter2D(Collider2D col)
     {
-
-        //if an enemy comes into the range
-        if (col.gameObject.tag == "Enemy")
+        
+        if (this.gameObject.name == "Ranged_Tower")
         {
-            //Target = col.gameObject;
-            Debug.Log("col.gameObject: " + col.gameObject);
-            targets.Add(col.gameObject);
-            if (targets.Count > 0)
+            //if an enemy comes into the range
+            if (col.gameObject.tag == "Enemy")
             {
-                TryAttack(targets[0]);
+                //Target = col.gameObject;
+                Debug.Log("col.gameObject: " + col.gameObject);
+                targets.Add(col.gameObject);
+                if (targets.Count > 0)
+                {
+                    TryAttack(targets[0]);
+                }
+            }
+        }
+        else if (this.gameObject.name == "ElectricFence")
+        {
+            if (col.gameObject.tag == "Enemy")
+            {
+                targets.Add(col.gameObject);
+                if (targets.Count > 0)
+                {
+                    ZappyZap();
+                }
+            }
+        }
+        else if (this.gameObject.name == "Incubator")
+        {
+            if (col.gameObject.tag == "Egg")
+            {
+                // change eggs spawn rate
+                if (col.gameObject.GetComponent<EggHatching>().ToSpawn >= 1)
+                {
+                    col.gameObject.GetComponent<EggHatching>().ToSpawn--;
+                    Debug.Log("egg entered range " + col.gameObject.GetComponent<EggHatching>().ToSpawn);
+                }
             }
         }
     }
 
     public void OnTriggerExit2D(Collider2D col)
     {
-       
-
-        if (col.gameObject.tag == "Enemy")
+        if (this.gameObject.name == "Ranged_Tower")
         {
-            //Target = null;
-            if (targets.Count > 0)
+
+            if (col.gameObject.tag == "Enemy")
             {
-                targets.Remove(col.gameObject);
+                //Target = null;
+                if (targets.Count > 0)
+                {
+                    targets.Remove(col.gameObject);
+                }
+                //Debug.Log("Target is now null");
+                //otherwise target nothing
             }
-            //Debug.Log("Target is now null");
-            //otherwise target nothing
+        }
+        else if (this.gameObject.name == "ElectricFence")
+        {
+            if (col.gameObject.tag == "Enemy")
+            {
+                if (targets.Count > 0)
+                {
+                    targets.Remove(col.gameObject);
+                }
+            }
         }
     }
 
@@ -104,13 +151,14 @@ public class TowerScript : MonoBehaviour
     public void TryAttack(GameObject GO)
     {
         StartCoroutine(WaitForAttack((float)MyTower.GetFR()));
-        
+
 
         Rigidbody2D ProjectileRB;
         Vector3 TargetMoveDirection;
         IEnumerator WaitForAttack(float Speed)
         {
-            while (targets.Count > 0) {
+            while (targets.Count > 0)
+            {
 
                 //spawns a projectile at the center of the tower
                 GameObject proj = Instantiate(Projectile, Ranged_Tower.position, Ranged_Tower.rotation);
@@ -125,17 +173,29 @@ public class TowerScript : MonoBehaviour
                 //gives the target a new velocity in that direction
                 ProjectileRB.velocity = new Vector3(TargetMoveDirection.x, TargetMoveDirection.y);
                 yield return new WaitForSecondsRealtime(Speed);
-
             }
-
         }
-        // Update is called once per frame
-        void Update()
+    }
+
+    public void ZappyZap()
+    {
+        StartCoroutine(WaitForZap((float)MyTower.GetFR()));
+    }
+    IEnumerator WaitForZap(float Speed)
+    {
+        for (int i = 0; i < targets.Count; i++)
         {
+            EnemyScript enemy = targets[i].GetComponent<EnemyScript>();
+            //grabs the enemy object inside of the enemyScript
+            enemy.getStats().Damage(DMG);
 
-
-
-
+            //if the enemy dies
+            if (enemy.getStats().getHealth() == 0)
+            {
+                //can call a death animation per enemy
+                Destroy(targets[i].gameObject);
+            }
         }
-    } 
+        yield return new WaitForSecondsRealtime(Speed);
+    }
 }

@@ -13,18 +13,21 @@ TagManager:
   - Chicken
   - GameManager
   - Testing
+  - Boundary
+  - Decoy
+  - Egg
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - SQUARE
   - Water
   - UI
   - Projectile
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Obstacle
+  - EGG
+  - Border
   - 
   - 
   - 
@@ -53,9 +56,6 @@ TagManager:
   - name: Background
     uniqueID: 547914021
     locked: 0
-  - name: Beings
-    uniqueID: 2942883267
-    locked: 0
   - name: Towers
     uniqueID: 2017347461
     locked: 0
@@ -64,4 +64,7 @@ TagManager:
     locked: 0
   - name: Squares
     uniqueID: 3162256817
+    locked: 0
+  - name: Beings
+    uniqueID: 2942883267
     locked: 0

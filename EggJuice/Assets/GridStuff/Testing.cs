@@ -38,9 +38,15 @@ public class Testing : MonoBehaviour
 {
     //public PathFinding pathfinding;
     public List<GameObject> chickens;
+    public List<GameObject> decoys;
+    public List<GameObject> eggs;
+    public List<GameObject> eggsAndChickens;
     [SerializeField] private GameObject square;
     [SerializeField] private int numChickens;
-
+    [SerializeField] private int numDecoys;
+    [SerializeField] private int numEggs;
+    [SerializeField] private int numEggsChickens;
+    
     public GridBoy<PathNode> grid;
     private const int WIDTH = 48;
     private const int HEIGHT = 20;
@@ -69,6 +75,7 @@ public class Testing : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -84,8 +91,8 @@ public class Testing : MonoBehaviour
                     Debug.DrawLine(new Vector3(path[i].x, path[i].y) * 10f + Vector3.one * 5f,
                         new Vector3(path[i + 1].x, path[i + 1].y));
                 }
-            }*/
-        }
+            }
+       }*/
     }
 
     public GridBoy<PathNode> getGrid()
@@ -101,6 +108,26 @@ public class Testing : MonoBehaviour
     public void destroyChicken()
     {
         numChickens--;
+        numEggsChickens--;
+    }
+    
+    public void destroyDecoy()
+    {
+        numDecoys--;
+        //numEggsChickens--;
+    }
+    
+    public void destroyEgg()
+    {
+        numEggs--;
+        numEggsChickens--;
+    }
+
+    public void removeEgg(GameObject egg)
+    {
+        eggs.Remove(egg);
+        eggsAndChickens.Remove(egg);
+        destroyEgg();
     }
 
     public void setThings(int size, DragStartScript dragScript)
@@ -169,5 +196,47 @@ public class Testing : MonoBehaviour
     {
         return grid.GetWorldPosition(x, y);
     }
-}
 
+    public void addChicken(GameObject chicken)
+    {
+        chickens.Add(chicken);
+        eggsAndChickens.Add(chicken);
+        numChickens++;
+        numEggsChickens++;
+    }
+
+    public void addDecoy(GameObject decoy)
+    {
+        decoys.Add(decoy);
+        numDecoys++;
+    }
+    
+    public void addEgg(GameObject egg)
+    {
+        eggs.Add(egg);
+        eggsAndChickens.Add(egg);
+        numEggs++;
+        numEggsChickens++;
+    }
+
+    public int getNumDecoys()
+    {
+        return numDecoys;
+    }
+    
+    public int getNumEggs()
+    {
+        return numEggs;
+    }
+    
+    public int getEggsAndChickens()
+    {
+        return numEggs + numChickens;
+    }
+
+    public void removeDecoy(GameObject decoy)
+    {
+        decoys.Remove(decoy);
+        numDecoys--;
+    }
+}

@@ -38,7 +38,7 @@ public class PathNode
     {
         // instantiate square to position
         GameObject obj = GameObject.Instantiate(nSquare, new Vector3(position.x + grid.GetCellSize() / 2, 
-            position.y + grid.GetCellSize() / 2), Quaternion.identity);
+            position.y + grid.GetCellSize() / 2,2), Quaternion.identity);
         square = obj;
         swapColor();
         square.GetComponent<SpriteRenderer>().enabled = false;
