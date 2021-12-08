@@ -6,7 +6,7 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
-   private int currency=0;
+   private int currency=2;
     public static GameManager Instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject NewChicken;
     Testing testingscript;
     GameObject objectToDisappear;
+    Animator Animation;
 
     //round 1 enemies, 3 enemies
     // public List<GameObject> Enemies = new List<GameObject>();
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> RoundSeven = new List<GameObject>();
     private List<GameObject> RoundEight= new List<GameObject>();
 
-    public int Round=0;
+    public int Round;
     int ChickenCount;
     
 
@@ -104,25 +105,24 @@ public class GameManager : MonoBehaviour {
 
         //Round 1
         addPlate(RoundOne, 3);
-        Debug.Log("Round1!!!!");
-
+      
         //Round 2
         addPlate(RoundTwo, 2);
         addBook(RoundTwo, 2);
-        Debug.Log("Round2!!!!");
+      
 
         //Round 3
         addBook(RoundThree, 2);
         addRacoon(RoundThree, 2);
         addPlate(RoundThree, 1);
-        Debug.Log("Round3!!!!");
+        
 
         //Round 4
         addPlate(RoundFour, 2);
         addRacoon(RoundFour, 2);
         addBook(RoundFour, 3);
         addCat(RoundFour, 3);
-        Debug.Log("Round4!!!!");
+       
 
         //Round 5
         addPlate(RoundFive, 4);
@@ -215,7 +215,8 @@ public class GameManager : MonoBehaviour {
         GameObject.Find("RoundText").GetComponent<UnityEngine.UI.Text>().text = "Round " + Round;
         // UpdateGameState(GameState.Round);
         objectToDisappear = GameObject.Find("PlayButton");
-        
+        Animation = GameObject.Find("ButtonImage").GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -255,10 +256,11 @@ public class GameManager : MonoBehaviour {
     }
 
 private void HandlePreRound(){
- // do somthing?
- //have a play button
-
-}
+        // do somthing?
+        //have a play button
+        Animation.SetBool("PreRound", true);
+        Animation.SetBool("OnClick", false);
+    }
 
     public List<GameObject> getRoundEnemies(int round) {
 

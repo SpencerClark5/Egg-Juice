@@ -9,12 +9,15 @@ public class ButtonClickyScript : MonoBehaviour
     GameManager GM;
     [SerializeField] private Button btn = null;
     GameObject objectToDisappear;
+    Animator Animation;
     // Start is called before the first frame update
     void Start()
     {
        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
        btn.onClick.AddListener(ButtonClick);
        objectToDisappear = GameObject.Find("PlayButton");
+      // ButtonToDisappear = GameObject.Find("ButtonImage");
+        Animation = GameObject.Find("ButtonImage").GetComponent<Animator>();
     }
 
     //when the button is clicked
@@ -22,10 +25,13 @@ public class ButtonClickyScript : MonoBehaviour
     {
 
         //play an animation
-        //switch the game state
-        Debug.Log("Click");
+        Debug.Log("Playing");
+        Animation.SetBool("OnClick",true);
+        Animation.SetBool("PreRound", false);
+        Debug.Log("Plauyed");
         GM.UpdateGameState(GameManager.GameState.Round);
         objectToDisappear.SetActive(false);
+       //ButtonToDisappear.SetActive(false);
 
         //make the button dissapear until next round
 
