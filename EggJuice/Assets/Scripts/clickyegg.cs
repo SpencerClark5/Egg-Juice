@@ -91,7 +91,7 @@ public class clickyegg : MonoBehaviour
 
             GameManager GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             //increases currecny by 1
-            GM.IncrementCurrency(1);
+            GM.IncrementCurrency(2);
             testing.removeEgg(this.gameObject);
         }
     }

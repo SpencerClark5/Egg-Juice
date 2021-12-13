@@ -9,6 +9,7 @@ public class TowerScript : MonoBehaviour
     [SerializeField] private int DMG;
     [SerializeField] private float FireRate;
     [SerializeField] private float ProjectileSpeed;
+
     private class TowerStats
     {
         int TowerHealth;
@@ -54,10 +55,12 @@ public class TowerScript : MonoBehaviour
     private Rigidbody2D TowerRigidBody;
     TowerStats MyTower;
     private List<GameObject> targets = new List<GameObject>();
+    Animator RubberBandFire;
     void Start()
     {
         TowerRigidBody = GetComponent<Rigidbody2D>();
         MyTower = new TowerStats(Cost, Health, DMG, FireRate, ProjectileSpeed);
+        RubberBandFire = GameObject.Find("RubberBandLauncher_02_0").GetComponent<Animator>();
         //   StartCoroutine(Wait());
         // TowerProjectile TP = Projectile.GetComponent<TowerProjectile>();
         //TowerStats Fence = new TowerStats(2, 100, 10);
@@ -159,7 +162,8 @@ public class TowerScript : MonoBehaviour
         {
             while (targets.Count > 0)
             {
-
+                
+                RubberBandFire.SetTrigger("Firing");
                 //spawns a projectile at the center of the tower
                 GameObject proj = Instantiate(Projectile, Ranged_Tower.position, Ranged_Tower.rotation);
                 //grabs the RB from it

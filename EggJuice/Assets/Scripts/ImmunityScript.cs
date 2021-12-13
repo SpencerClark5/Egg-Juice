@@ -5,9 +5,10 @@ using UnityEngine;
 public class ImmunityScript : MonoBehaviour
 {
     [SerializeField] private int health;
+    [SerializeField] private Animator Bobble;
     private bool immune = false;
-    
-    IEnumerator Immunity()
+   
+   private IEnumerator Immunity()
     {
       //  Debug.Log("Immunity");
         // make this immune
@@ -25,6 +26,16 @@ public class ImmunityScript : MonoBehaviour
     {
         if (immune == false)
         {
+            if (this.gameObject.name == "Decoy(Clone)") {
+                Bobble.SetTrigger("Wiggle");
+            }
+
+
+
+
+          
+
+
             health -= damage;
             if (health <= 0)
             {
@@ -34,4 +45,12 @@ public class ImmunityScript : MonoBehaviour
         }
         return false;
     }
+
+    public bool getImmunity()
+    {
+        return immune;
+    }
+
+
+
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour {
@@ -45,14 +46,14 @@ public class GameManager : MonoBehaviour {
         //increases currecy based off of what was clicked
         currency += cur;
         //this updates the text
-        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
+        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Egg Juice: " + currency;
 
     }
 
     public void RemoveCurrency(int cost)
     {
         currency -= cost;
-        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
+        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Egg Juice: " + currency;
     }
 
     public void UpdateGameState(GameState newState) {
@@ -200,7 +201,7 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("STARTED!!!!");
+        
         PrepareEnemys();
         //have to arrays, one of enemies that we could spawn, and one that we want to spawn this round
         //  PrepareEnemys();
@@ -211,7 +212,7 @@ public class GameManager : MonoBehaviour {
         EnemyScript enemy = GameObject.FindWithTag("GameManager").GetComponent<EnemyScript>();
         testingscript = GameObject.Find("Testing").GetComponent<Testing>();
 
-        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Currency: " + currency;
+        GameObject.Find("CurrencyText").GetComponent<UnityEngine.UI.Text>().text = "Egg Juice: " + currency;
         GameObject.Find("RoundText").GetComponent<UnityEngine.UI.Text>().text = "Round " + Round;
         // UpdateGameState(GameState.Round);
         objectToDisappear = GameObject.Find("PlayButton");
@@ -347,7 +348,8 @@ private void HandlePreRound(){
             if (Egg.ToSpawn == Round)
             {
                 //spawn chicken at that spot
-                Instantiate(NewChicken, Egg.transform.position, Egg.transform.rotation);
+                GameObject chicken = Instantiate(NewChicken, Egg.transform.position, Egg.transform.rotation);
+                testingscript.addChicken(chicken);
                 //delete the egg
                 Destroy(Egg.gameObject);
 
@@ -404,7 +406,7 @@ private void HandlePreRound(){
 
                 //player wins the round, switch game state to preround
                 UpdateGameState(GameState.PreRound);
-                Debug.Log("ROUND ENDED");
+               
                 objectToDisappear.SetActive(true);
                 //make the button visable
             }
@@ -413,7 +415,7 @@ private void HandlePreRound(){
             {
                 //player loses, set game state to lose
                 UpdateGameState(GameState.Lose);
-                Debug.Log("LOSE");
+               
 
             }
             //if player beats all rounds and has chickens left
@@ -445,18 +447,7 @@ private void HandlePreRound(){
 
 private void handleLose()
 {
-        /*
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        Debug.Log("You Lose");
-        */
+        SceneManager.LoadScene("Lose Screen", LoadSceneMode.Additive);
     }
     //make an array of enemies per level
     //make spawn function
