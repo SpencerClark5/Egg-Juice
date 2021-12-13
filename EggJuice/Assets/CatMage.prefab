@@ -14,11 +14,11 @@ PrefabInstance:
     - target: {fileID: 2353718662629315506, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8669070399403355096, guid: 0ee615a4548ec8748a5763418d54717e, type: 3}
+      objectReference: {fileID: -7717863385132329997, guid: e41f0ca1647515a468c40d0b98ea591a, type: 3}
     - target: {fileID: 2353718662629315509, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 3d5bbf5e25eb42344b36563f0106c396, type: 2}
+      objectReference: {fileID: 9100000, guid: 6386d94fd1bf2004d871b8104e87a706, type: 2}
     - target: {fileID: 2353718663556939930, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
       propertyPath: m_RootOrder
       value: 0

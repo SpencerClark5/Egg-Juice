@@ -1,0 +1,432 @@
+fileFormatVersion: 2
+guid: 5b98dd0907423ef488aa0dccb332e65e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7261937678463905204
+    second: chicken_death_sprites_0
+  - first:
+      213: 8223902984642919996
+    second: chicken_death_sprites_1
+  - first:
+      213: 3158827919313054603
+    second: chicken_death_sprites_2
+  - first:
+      213: 4858498492695608263
+    second: chicken_death_sprites_3
+  - first:
+      213: 3383912945719649773
+    second: chicken_death_sprites_4
+  - first:
+      213: -2705806472417884546
+    second: chicken_death_sprites_5
+  - first:
+      213: -7162043273696261898
+    second: chicken_death_sprites_6
+  - first:
+      213: 2248572000067221846
+    second: chicken_death_sprites_7
+  - first:
+      213: 4030232729419674842
+    second: chicken_death_sprites_8
+  - first:
+      213: 8340441565050130204
+    second: chicken_death_sprites_9
+  - first:
+      213: 477151600755863919
+    second: chicken_death_sprites_10
+  - first:
+      213: 7988017129712398832
+    second: chicken_death_sprites_11
+  - first:
+      213: -8539365260700106145
+    second: chicken_death_sprites_12
+  - first:
+      213: 2969642636553703442
+    second: chicken_death_sprites_13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: chicken_death_sprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 318
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdadd9d7d597c460800000000000000
+      internalID: 7261937678463905204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_1
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 318
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e7ae2413c212270800000000000000
+      internalID: 8223902984642919996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_2
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 318
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8bad35a14966db20800000000000000
+      internalID: 3158827919313054603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_3
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 318
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb74ee33aadc6340800000000000000
+      internalID: 4858498492695608263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 212
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de5277835e216fe20800000000000000
+      internalID: 3383912945719649773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_5
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 212
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e76449c695b037ad0800000000000000
+      internalID: -2705806472417884546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 212
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8cb55b69f4b9c90800000000000000
+      internalID: -7162043273696261898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_7
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 212
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65975e31258843f10800000000000000
+      internalID: 2248572000067221846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 106
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4763770534ee730800000000000000
+      internalID: 4030232729419674842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_9
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 106
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f47b2f9633fb370800000000000000
+      internalID: 8340441565050130204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_10
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 106
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61ff035ade2f9600800000000000000
+      internalID: 477151600755863919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_11
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 106
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f13e34d1432bde60800000000000000
+      internalID: 7988017129712398832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f52c8a4f9841e7980800000000000000
+      internalID: -8539365260700106145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_death_sprites_13
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 0
+        width: 135
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21053ad7e3a463920800000000000000
+      internalID: 2969642636553703442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

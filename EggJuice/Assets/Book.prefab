@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1352084029
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 337888183546680046, guid: a657de263ca65fb47ad6f27c9ddb7f0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 5094648139477693430}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 68f0ccf863af3b8418acb14532f69685, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80d297847db26844bb1c563991a16cef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1352084029
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -228,6 +228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   DMG: 0
+  astarAI: {fileID: 0}
+  EGG: {fileID: 0}
+  atkSpeed: 0
 --- !u!50 &5094648141505733509
 Rigidbody2D:
   serializedVersion: 4

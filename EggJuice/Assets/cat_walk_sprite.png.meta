@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 5a6a9278e4e55af489cd8d2816b82d8c
+guid: e41f0ca1647515a468c40d0b98ea591a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1873720488827253601
-    second: Cook_Book_Walk_Sprite_Sheet_02_0
+      213: -7717863385132329997
+    second: cat_walk_sprite_0
   - first:
-      213: 2735456737810555926
-    second: Cook_Book_Walk_Sprite_Sheet_02_1
+      213: 2100704876673717030
+    second: cat_walk_sprite_1
   - first:
-      213: -8846023257748345126
-    second: Cook_Book_Walk_Sprite_Sheet_02_2
+      213: 407992123232037545
+    second: cat_walk_sprite_2
   - first:
-      213: 4180406312886590277
-    second: Cook_Book_Walk_Sprite_Sheet_02_3
+      213: -3067908067104842295
+    second: cat_walk_sprite_3
   - first:
-      213: -8738640404815760791
-    second: Cook_Book_Walk_Sprite_Sheet_02_4
+      213: -6322047872145140007
+    second: cat_walk_sprite_4
   - first:
-      213: -7515596295237979872
-    second: Cook_Book_Walk_Sprite_Sheet_02_5
+      213: -4443979026965026531
+    second: cat_walk_sprite_5
+  - first:
+      213: 8163319239225644029
+    second: cat_walk_sprite_6
+  - first:
+      213: -1540421454075364131
+    second: cat_walk_sprite_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cook_Book_Walk_Sprite_Sheet_02_0
+      name: cat_walk_sprite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 777
-        width: 726
-        height: 777
+        y: 300
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1637be07bdac00a10800000000000000
-      internalID: 1873720488827253601
+      spriteID: 3f391386424a4e490800000000000000
+      internalID: -7717863385132329997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Walk_Sprite_Sheet_02_1
+      name: cat_walk_sprite_1
       rect:
         serializedVersion: 2
-        x: 726
-        y: 777
-        width: 726
-        height: 777
+        x: 250
+        y: 300
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 614a5a3f86b46f520800000000000000
-      internalID: 2735456737810555926
+      spriteID: 623511094f3372d10800000000000000
+      internalID: 2100704876673717030
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Walk_Sprite_Sheet_02_2
+      name: cat_walk_sprite_2
       rect:
         serializedVersion: 2
-        x: 1452
-        y: 777
-        width: 726
-        height: 777
+        x: 500
+        y: 300
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +171,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adee01f17bc9c3580800000000000000
-      internalID: -8846023257748345126
+      spriteID: 9aa2768acaa79a500800000000000000
+      internalID: 407992123232037545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Walk_Sprite_Sheet_02_3
+      name: cat_walk_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 300
+        width: 250
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cd19a01ed99c65d0800000000000000
+      internalID: -3067908067104842295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_walk_sprite_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 726
-        height: 777
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54bd7609469c30a30800000000000000
-      internalID: 4180406312886590277
+      spriteID: 9d656c7b4f29348a0800000000000000
+      internalID: -6322047872145140007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Walk_Sprite_Sheet_02_4
+      name: cat_walk_sprite_5
       rect:
         serializedVersion: 2
-        x: 726
+        x: 250
         y: 0
-        width: 726
-        height: 777
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 962b413e9dc1ab680800000000000000
-      internalID: -8738640404815760791
+      spriteID: d19a674ce90d352c0800000000000000
+      internalID: -4443979026965026531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Walk_Sprite_Sheet_02_5
+      name: cat_walk_sprite_6
       rect:
         serializedVersion: 2
-        x: 1452
+        x: 500
         y: 0
-        width: 726
-        height: 777
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,8 +255,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02139132dfc33b790800000000000000
-      internalID: -7515596295237979872
+      spriteID: df31822d89fe94170800000000000000
+      internalID: 8163319239225644029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_walk_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 250
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc727959d25f9ae0800000000000000
+      internalID: -1540421454075364131
       vertices: []
       indices: 
       edges: []

@@ -18,11 +18,11 @@ PrefabInstance:
     - target: {fileID: 2353718662629315506, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6747346449297766555, guid: 465b60b6d384f924b9435bd4df52d5e1, type: 3}
+      objectReference: {fileID: 6884955435576977365, guid: c9acb840a0f604e44a7cbbc21b0dbfd7, type: 3}
     - target: {fileID: 2353718662629315509, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 96feb239e259e624386bacf353cf1cc8, type: 2}
+      objectReference: {fileID: 9100000, guid: ecf6e9349d24fc34a88b61fb539f83a9, type: 2}
     - target: {fileID: 2353718663556939928, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
       propertyPath: EGG
       value: 
