@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayButtonStartScript : MonoBehaviour
+public class changeScene : MonoBehaviour
 {
     public void Play()
     {
         // switch scenes
-        SceneManager.LoadScene("TutorialScene");
+        SceneManager.LoadScene("Spencer scene");
     }
 }

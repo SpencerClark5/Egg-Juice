@@ -59,7 +59,7 @@ public class AstarAI : MonoBehaviour
         {
             if (!runOffMap)
             {
-                Debug.Log("RunOffMap: " + runOffMap);
+                //Debug.Log("RunOffMap: " + runOffMap);
                 if (EnemyOrChicken)
                 {
                     if (targetEgg && targetChicken)
@@ -116,7 +116,7 @@ public class AstarAI : MonoBehaviour
                 if (transform.position.x > 5)
                 {
                     // go right
-                    seeker.StartPath(transform.position, new Vector3(transform.position.x + (5 - transform.position.x),
+                    seeker.StartPath(transform.position, new Vector3(transform.position.x + (10 - transform.position.x),
                         transform.position.y, transform.position.z), OnPathComplete);
                 }
                 else if (transform.position.x < -5)
@@ -128,7 +128,7 @@ public class AstarAI : MonoBehaviour
                 else if (transform.position.y < 0)
                 {
                     // go down
-                    seeker.StartPath(transform.position, new Vector3(transform.position.x, transform.position.y -
+                    seeker.StartPath(transform.position, new Vector3(transform.position.x, transform.position.y +
                         (-7 + transform.position.y), transform.position.z), OnPathComplete);
                 }
                 else
@@ -188,6 +188,11 @@ public class AstarAI : MonoBehaviour
 
     public void Update()
     {
+        if (targetEgg && !targetChicken && testing.getNumEggs() == 0)
+        {
+            Debug.Log("made it to where couruoutine should start");
+            StartCoroutine(WaitForEgg());
+        }
 
         if (path == null)
         {
@@ -196,7 +201,7 @@ public class AstarAI : MonoBehaviour
             return;
         }
 
-        if (gameObject.name == "Raccoon")
+        if (gameObject.name == "Raccoon(Clone)")
         {
             if (gameObject.transform.position.x < -9 || gameObject.transform.position.x > 9 ||
                 gameObject.transform.position.y < -6 || gameObject.transform.position.y > 6)
@@ -204,7 +209,6 @@ public class AstarAI : MonoBehaviour
                 runOffMap = false;
             }
         }
-
         // Check in a loop if we are close enough to the current waypoint to switch to the next one.
         // We do this in a loop because many waypoints might be close to each other and we may reach
         // several of them in the same frame.
@@ -256,6 +260,18 @@ public class AstarAI : MonoBehaviour
 
     }
 
+    private IEnumerator WaitForEgg()
+    {
+        yield return new WaitForSeconds(5f);
+        Debug.Log("waitedForEgg");
+        if (testing.getNumEggs() == 0)
+        {
+            Debug.Log("no eggs");
+            Destroy(this.gameObject);
+            Debug.Log("should be destroyed");
+        }
+    }
+
     public void removeDecoy(GameObject decoy)
     {
         decoys.Remove(decoy);
@@ -291,5 +307,15 @@ public class AstarAI : MonoBehaviour
     public bool getRunOffMap()
     {
         return runOffMap;
+    }
+
+    public bool getTargetEgg()
+    {
+        return targetEgg;
+    }
+    
+    public bool getTargetChicken()
+    {
+        return targetChicken;
     }
 }

@@ -12,7 +12,7 @@ public class DirectionScript : MonoBehaviour
     {
         previousPos = this.gameObject.transform.position.x;
     }
-
+ 
     // Update is called once per frame
     void Update()
     {

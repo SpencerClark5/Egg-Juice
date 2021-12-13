@@ -32,7 +32,7 @@ public class TowerProjectile : MonoBehaviour
             if (enemy.getStats().getHealth() == 0)
             {
                 //can call a death animation per enemy
-                if (col.gameObject.name == "Raccoon")
+                if (col.gameObject.name == "Raccoon(Clone)")
                 {
                     // spawn egg
                     enemy.setKilledByTower();
