@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 1f68a2f2a2325f346b67c4d4129ca2a4
+guid: 9bc5326d120c7a041acaf77a43498317
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 337888183546680046
-    second: Cook_Book_Attack_Sprite_Sheet_0
+      213: -1204645647597516597
+    second: Cook_Book_Walk_Sprite_Sheet_03_0
   - first:
-      213: -3467561130650402001
-    second: Cook_Book_Attack_Sprite_Sheet_1
+      213: 5621343286264269507
+    second: Cook_Book_Walk_Sprite_Sheet_03_1
   - first:
-      213: -8135333879299991143
-    second: Cook_Book_Attack_Sprite_Sheet_2
+      213: -7872930440215497150
+    second: Cook_Book_Walk_Sprite_Sheet_03_2
   - first:
-      213: -4742679617727962287
-    second: Cook_Book_Attack_Sprite_Sheet_3
+      213: 4537944261659741584
+    second: Cook_Book_Walk_Sprite_Sheet_03_3
   - first:
-      213: 8427326455506395582
-    second: Cook_Book_Attack_Sprite_Sheet_4
+      213: -7186952708162473491
+    second: Cook_Book_Walk_Sprite_Sheet_03_4
   - first:
-      213: 5295531245149105983
-    second: Cook_Book_Attack_Sprite_Sheet_5
-  - first:
-      213: -5341853804853917935
-    second: Cook_Book_Attack_Sprite_Sheet_6
-  - first:
-      213: 3296708770837713652
-    second: Cook_Book_Attack_Sprite_Sheet_7
+      213: -460249078383714559
+    second: Cook_Book_Walk_Sprite_Sheet_03_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,11 +105,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_0
+      name: Cook_Book_Walk_Sprite_Sheet_03_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee21a12438b60b400800000000000000
-      internalID: 337888183546680046
+      spriteID: bc8cabe7a2d384fe0800000000000000
+      internalID: -1204645647597516597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_1
+      name: Cook_Book_Walk_Sprite_Sheet_03_1
       rect:
         serializedVersion: 2
         x: 362
@@ -150,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2381aa068fb0efc0800000000000000
-      internalID: -3467561130650402001
+      spriteID: 3ca0f4a8fe5030e40800000000000000
+      internalID: 5621343286264269507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_2
+      name: Cook_Book_Walk_Sprite_Sheet_03_2
       rect:
         serializedVersion: 2
         x: 724
@@ -171,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9999f1b80fc791f80800000000000000
-      internalID: -8135333879299991143
+      spriteID: 24678992a7bbdb290800000000000000
+      internalID: -7872930440215497150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_3
+      name: Cook_Book_Walk_Sprite_Sheet_03_3
       rect:
         serializedVersion: 2
         x: 1086
@@ -192,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 153e6d5f30e9e2eb0800000000000000
-      internalID: -4742679617727962287
+      spriteID: 09d40ce43440afe30800000000000000
+      internalID: 4537944261659741584
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_4
+      name: Cook_Book_Walk_Sprite_Sheet_03_4
       rect:
         serializedVersion: 2
         x: 0
@@ -213,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb1e5bae2c0e3f470800000000000000
-      internalID: 8427326455506395582
+      spriteID: de1b17c0790d24c90800000000000000
+      internalID: -7186952708162473491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_5
+      name: Cook_Book_Walk_Sprite_Sheet_03_5
       rect:
         serializedVersion: 2
         x: 362
@@ -234,50 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3f281c4c918d7940800000000000000
-      internalID: 5295531245149105983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 724
-        y: 0
-        width: 362
-        height: 393
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1170d9f444cedd5b0800000000000000
-      internalID: -5341853804853917935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cook_Book_Attack_Sprite_Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 1086
-        y: 0
-        width: 362
-        height: 393
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f252bd092340cd20800000000000000
-      internalID: 3296708770837713652
+      spriteID: 10fdcb6d6eddc99f0800000000000000
+      internalID: -460249078383714559
       vertices: []
       indices: 
       edges: []

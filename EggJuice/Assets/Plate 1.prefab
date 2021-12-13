@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 2353718663556939927}
   - component: {fileID: 1827747518284336903}
   - component: {fileID: -8406560889866332005}
+  - component: {fileID: -2505270965625139781}
   m_Layer: 7
   m_Name: Plate 1
   m_TagString: Enemy
@@ -234,7 +235,8 @@ MonoBehaviour:
   DMG: 5
   astarAI: {fileID: 1827747518284336903}
   EGG: {fileID: 0}
-  atkSpeed: 0.25
+  atkSpeed: 0.01
+  animatorHolder: {fileID: 2353718662629315511}
 --- !u!50 &2353718663556939929
 Rigidbody2D:
   serializedVersion: 4
@@ -330,3 +332,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetObject: {fileID: 2353718662629315511}
   rb: {fileID: 2353718663556939929}
+--- !u!95 &-2505270965625139781
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353718663556939932}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0b33f75c218ca645b4276add1af2ce5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
