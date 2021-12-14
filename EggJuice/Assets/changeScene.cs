@@ -8,6 +8,6 @@ public class changeScene : MonoBehaviour
     public void Play()
     {
         // switch scenes
-        SceneManager.LoadScene("Spencer scene");
+        SceneManager.LoadScene("Tutorial");
     }
 }

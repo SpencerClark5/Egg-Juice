@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     Testing testingscript;
     GameObject objectToDisappear;
     Animator Animation;
+    private AudioSource hatchSource;
 
     //round 1 enemies, 3 enemies
     // public List<GameObject> Enemies = new List<GameObject>();
@@ -217,7 +218,7 @@ public class GameManager : MonoBehaviour {
         // UpdateGameState(GameState.Round);
         objectToDisappear = GameObject.Find("PlayButton");
         Animation = GameObject.Find("ButtonImage").GetComponent<Animator>();
-
+        hatchSource = GameObject.FindGameObjectWithTag("EggDeathSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -352,6 +353,7 @@ private void HandlePreRound(){
                 testingscript.addChicken(chicken);
                 //delete the egg
                 Destroy(Egg.gameObject);
+                hatchSource.Play();
 
                
             }

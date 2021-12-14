@@ -67,5 +67,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatMage
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8854846939531342305, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
+    - {fileID: 6127063880509703450, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97a524db6a0ad7340b7c701c78b8ae3d, type: 3}

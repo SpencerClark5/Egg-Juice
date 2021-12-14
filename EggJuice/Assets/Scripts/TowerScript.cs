@@ -9,6 +9,7 @@ public class TowerScript : MonoBehaviour
     [SerializeField] private int DMG;
     [SerializeField] private float FireRate;
     [SerializeField] private float ProjectileSpeed;
+    [SerializeField] private AudioSource source;
 
     private class TowerStats
     {
@@ -162,7 +163,7 @@ public class TowerScript : MonoBehaviour
         {
             while (targets.Count > 0)
             {
-                
+                source.Play();
                 RubberBandFire.SetTrigger("Firing");
                 //spawns a projectile at the center of the tower
                 GameObject proj = Instantiate(Projectile, Ranged_Tower.position, Ranged_Tower.rotation);

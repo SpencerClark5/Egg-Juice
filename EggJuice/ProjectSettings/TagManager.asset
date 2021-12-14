@@ -16,6 +16,8 @@ TagManager:
   - Boundary
   - Decoy
   - Egg
+  - DeathSound
+  - EggDeathSound
   layers:
   - Default
   - TransparentFX

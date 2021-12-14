@@ -15,6 +15,7 @@ public class EnemyScript : MonoBehaviour
     private bool dontAttack = false;
     [SerializeField] private GameObject animatorHolder;
     private Animator animator;
+    private AudioSource chickenDeathSound;
     // true if moving to the right, false if moving to the left
 
     public class EnemyStats
@@ -63,6 +64,7 @@ public class EnemyScript : MonoBehaviour
                     }
                     else if (col.gameObject.GetComponent<ImmunityScript>().takeDamage(DMG))
                     {
+                        chickenDeathSound.Play();
                         Debug.Log("chickenOuch");
                         testing.destroyChicken();
                         testing.chickens.Remove(col.gameObject);
@@ -179,6 +181,7 @@ public class EnemyScript : MonoBehaviour
         testing = GameObject.FindGameObjectWithTag("Testing").GetComponent<Testing>();
         animator = animatorHolder.GetComponent<Animator>();
         //get the object that this script is on and determine health from that
+        chickenDeathSound = GameObject.FindGameObjectWithTag("DeathSound").GetComponent<AudioSource>();
     }
 
     public EnemyStats getStats()
